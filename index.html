@@ -345,6 +345,12 @@ dialog.shd a.vi{cursor:pointer}
  dialog.shd .rx td.r::before{content:attr(data-l);display:block;font:400 11px var(--f-body);color:var(--mut)}
 }
 /* 내부 재생창 */
+dialog.shd .inl{grid-column:1 / -1;margin:6px 0 10px;border-radius:12px;overflow:hidden;background:#000}
+dialog.shd .inl .fr{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+dialog.shd .inl .fr.v{aspect-ratio:9/16;max-height:72dvh;margin:0 auto}
+dialog.shd .inl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+dialog.shd .inl .ib{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;background:#16161a;font-size:13px}
+dialog.shd .inl .ib a,dialog.shd .inl .ib button{color:#c9c9d1;background:none;border:0;font:inherit;cursor:pointer;text-decoration:none;padding:4px 2px}
 dialog.pl{position:fixed;inset:0;margin:auto;width:min(920px,96vw);max-height:94dvh;border:0;padding:0;border-radius:18px;background:#000;color:#fff;overflow:hidden;color-scheme:dark}
 dialog.pl::backdrop{background:#000d}
 dialog.pl .ph{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;background:#16161a}
@@ -429,10 +435,21 @@ function playVideo(href,title,img,meta){const id=tidOf(href),f=id&&CLIPS[id],em=
     const a=document.createElement('a');a.className='ol';a.href=href;a.target='_blank';a.rel='noopener';a.textContent='원본 사이트에서 열기 ↗';pb.append(a)}
   else noVideo(href,title,img,meta);
   if(!pl.open)pl.showModal()}
+function inlinePlay(a){const href=a.href,em=embedOf(href);if(!em)return false;
+  $$('.inl',sh).forEach(x=>x.remove());
+  const w=document.createElement('div');w.className='inl';const vert=/tiktok|instagram/.test(href);
+  const fr=document.createElement('div');fr.className='fr'+(vert?' v':'');
+  const f=document.createElement('iframe');f.src=em;f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';f.title='영상';fr.append(f);
+  const ib=document.createElement('div');ib.className='ib';
+  const o=document.createElement('a');o.href=href;o.target='_blank';o.rel='noopener';o.textContent='원본에서 열기 ↗';
+  const c=document.createElement('button');c.type='button';c.textContent='닫기 ✕';c.onclick=()=>w.remove();
+  ib.append(o,c);w.append(fr,ib);a.after(w);
+  try{w.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(_){}
+  return true}
 function openArt(id){const src=$('#store #'+id);if(!src)return;const b=$('.body',sh);b.innerHTML='';b.append(src.cloneNode(true));$$('.rx table',b).forEach(t=>{const hs=$$('thead th',t).map(h=>h.textContent);$$('tbody tr',t).forEach(r=>$$('td',r).forEach((td,k)=>{if(k)td.dataset.l=hs[k]||''}))});if(!sh.open)sh.showModal();sh.scrollTop=0}
 ib.onclick=()=>{shi.showModal();shi.scrollTop=0};
 function goto(id){const n=items.findIndex(i=>i.id===id);if(n>=0){const t=$$('.sl',ms)[n];if(t)t.scrollIntoView();}}
-document.addEventListener('click',e=>{const v=e.target.closest&&e.target.closest('dialog.shd a[href^="http"]');if(v&&!v.closest('.infobody')&&tidOf(v.href)){e.preventDefault();const im=$('img',v),t=($('.vb b',v)||v).textContent.trim();playVideo(v.href,t,im?im.src:'',[($('.vb small',v)||{}).textContent,($('.vb em',v)||{}).textContent]);return}
+document.addEventListener('click',e=>{const v=e.target.closest&&e.target.closest('dialog.shd a[href^="http"]');if(v&&!v.closest('.infobody')&&tidOf(v.href)){e.preventDefault();if(inlinePlay(v))return;const im=$('img',v),t=($('.vb b',v)||v).textContent.trim();playVideo(v.href,t,im?im.src:'',[($('.vb small',v)||{}).textContent,($('.vb em',v)||{}).textContent]);return}
   const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);if(!id)return;
   if(items.some(i=>i.id===id)){e.preventDefault();shi.close();goto(id);openArt(id);return}
   const t=document.getElementById(id);if(t&&t.closest('#store')){e.preventDefault()}});
