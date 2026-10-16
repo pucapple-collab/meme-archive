@@ -276,6 +276,63 @@ nav.top a.sumbtn:hover{border-color:var(--ac);color:var(--ac)}
 
 </main>
 <script id="clipmap" type="application/json">{}</script>
+<style id="vplay-css">
+#vplay{position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+#vplay .vbox{width:min(920px,100%);max-height:100%;overflow:auto;background:#111;border-radius:14px;color:#fff;font:14px/1.4 system-ui,sans-serif}
+#vplay .vtop{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;background:#18181c}
+#vplay .vtop b{flex:1;min-width:0;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#vplay .vtop button{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:#2a2a30;color:#fff;font-size:16px}
+#vplay .vfr{position:relative;width:100%;height:0;padding-bottom:56.25%;background:#000}
+#vplay .vfr.v{width:min(100%,340px);padding-bottom:min(177.78%,600px);margin:0 auto}
+#vplay iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
+#vplay .vlow{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;background:#18181c;font-size:13px}
+#vplay .vlow a{color:#cfd2ff;text-decoration:none}
+#vplay .vlow span{color:#9a9aa6}
+</style>
+<script id="vplay-js">
+(function(){
+try{
+function parse(h){var m;
+ if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
+ if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/embed/v2/'+m[1],v:true};
+ if((m=/instagram\.com\/(?:reel|p)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
+ return null}
+function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
+function openP(href,title,info){
+ closeP();var host=document.querySelector('dialog[open]:last-of-type')||document.body;
+ var all=document.querySelectorAll('dialog[open]');if(all.length)host=all[all.length-1];
+ var o=document.createElement('div');o.id='vplay';
+ var box=document.createElement('div');box.className='vbox';
+ var top=document.createElement('div');top.className='vtop';
+ var b=document.createElement('b');b.textContent=title||'영상';
+ var x=document.createElement('button');x.type='button';x.textContent='✕';x.setAttribute('aria-label','닫기');
+ top.appendChild(b);top.appendChild(x);
+ var fr=document.createElement('div');fr.className='vfr'+(info.v?' v':'');
+ var f=document.createElement('iframe');f.src=info.u;f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');f.setAttribute('allowfullscreen','');f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');f.setAttribute('title','영상');
+ fr.appendChild(f);
+ var low=document.createElement('div');low.className='vlow';
+ var a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.textContent='원본에서 열기 ↗';
+ var sp=document.createElement('span');sp.textContent='안 열리면 오른쪽 링크';
+ low.appendChild(sp);low.appendChild(a);
+ box.appendChild(top);box.appendChild(fr);box.appendChild(low);o.appendChild(box);
+ x.addEventListener('click',function(ev){ev.stopPropagation();closeP()});
+ o.addEventListener('click',function(ev){if(ev.target===o)closeP()});
+ host.appendChild(o)}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeP()});
+document.addEventListener('click',function(e){
+ try{
+  var el=e.target;if(el&&el.nodeType===3)el=el.parentNode;
+  var a=el&&el.closest?el.closest('a[href^="http"]'):null;if(!a)return;
+  if(a.closest('#vplay')||a.closest('.infobody'))return;
+  var info=parse(a.href);if(!info)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  var t=a.querySelector('.vb b');var title=(t?t.textContent:a.textContent||'').replace(/\s+/g,' ').trim().slice(0,90);
+  openP(a.href,title,info);
+ }catch(err){}
+},true);
+}catch(err){}
+})();
+</script>
 <style id="swipe-css">
 /* 세로 스와이프 보기: 스크립트가 켜져 있을 때만 적용. 꺼져 있으면 원래 페이지가 그대로 보인다. */
 html.swp{overflow:hidden}
