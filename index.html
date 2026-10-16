@@ -346,8 +346,9 @@ dialog.shd a.vi{cursor:pointer}
 }
 /* 내부 재생창 */
 dialog.shd .inl{grid-column:1 / -1;margin:6px 0 10px;border-radius:12px;overflow:hidden;background:#000}
-dialog.shd .inl .fr{position:relative;width:100%;aspect-ratio:16/9;background:#000}
-dialog.shd .inl .fr.v{aspect-ratio:9/16;max-height:72dvh;margin:0 auto}
+dialog.shd .inl .fr{position:relative;width:100%;height:0;padding-bottom:56.25%;background:#000}
+dialog.shd .inl .fr.v{width:min(100%,360px);padding-bottom:min(177.78%,640px);margin:0 auto}
+dialog.shd .inl .wm{padding:8px 12px;background:#2a1a1c;color:#ffd7da;font-size:12.5px;text-align:center}
 dialog.shd .inl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 dialog.shd .inl .ib{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;background:#16161a;font-size:13px}
 dialog.shd .inl .ib a,dialog.shd .inl .ib button{color:#c9c9d1;background:none;border:0;font:inherit;cursor:pointer;text-decoration:none;padding:4px 2px}
@@ -444,6 +445,8 @@ function inlinePlay(a){const href=a.href,em=embedOf(href);if(!em)return false;
   const o=document.createElement('a');o.href=href;o.target='_blank';o.rel='noopener';o.textContent='원본에서 열기 ↗';
   const c=document.createElement('button');c.type='button';c.textContent='닫기 ✕';c.onclick=()=>w.remove();
   ib.append(o,c);w.append(fr,ib);a.after(w);
+  let loaded=false;f.addEventListener('load',()=>{loaded=true});
+  setTimeout(()=>{if(!loaded&&w.isConnected&&!$('.wm',w)){const m=document.createElement('div');m.className='wm';m.textContent='영상이 열리지 않으면 아래 "원본에서 열기"를 눌러 주세요.';w.insertBefore(m,ib)}},6000);
   try{w.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(_){}
   return true}
 function openArt(id){const src=$('#store #'+id);if(!src)return;const b=$('.body',sh);b.innerHTML='';b.append(src.cloneNode(true));$$('.rx table',b).forEach(t=>{const hs=$$('thead th',t).map(h=>h.textContent);$$('tbody tr',t).forEach(r=>$$('td',r).forEach((td,k)=>{if(k)td.dataset.l=hs[k]||''}))});if(!sh.open)sh.showModal();sh.scrollTop=0}
