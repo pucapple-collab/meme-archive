@@ -18,7 +18,7 @@ if prev and 'id="vplay-js"' in old:
     issues = [i for i in issues if i['name'] != prev] + [{'name': prev}]
 def bar(base):
     ls = ''.join(f'<a href="{base}archive/{html.escape(i["name"])}/" style="color:#ffd84d;margin-left:10px">{html.escape(i["name"])}</a>' for i in reversed(issues))
-    return ('<div id="issuebar" style="background:#111;color:#fff;font:600 13px/1.5 system-ui,sans-serif;padding:8px 16px">'
+    return ('<div id="issuebar" style="position:fixed;z-index:9;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto;border-radius:12px;background:#111e;border:1px solid #fff3;backdrop-filter:blur(8px);color:#fff;font:600 12px/1.5 system-ui,sans-serif;padding:7px 14px;text-align:center">'
             f'현재 {html.escape(num)}호 · 지난 호:{ls or " 아직 없음"}</div>')
 sh = open(src, encoding='utf-8').read().replace('../thumbs/', 'thumbs/')
 i = old.index('<body>') + len('<body>'); j = old.rindex('</body>')
