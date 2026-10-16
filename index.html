@@ -294,7 +294,7 @@ nav.top a.sumbtn:hover{border-color:var(--ac);color:var(--ac)}
 try{
 function parse(h){var m;
  if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
- if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/embed/v2/'+m[1],v:true};
+ if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0',v:true};
  if((m=/instagram\.com\/(?:reel|p)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
  return null}
 function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
@@ -480,7 +480,7 @@ function noVideo(href,title,img,meta){const pb=$('.pb',pl);pb.innerHTML='<div cl
   (meta||[]).filter(Boolean).forEach((t,k)=>{const m=document.createElement('p');m.textContent=t;if(k)m.style.fontFamily='var(--f-mono)';nv.append(m)});const p=document.createElement('p');p.style.fontSize='12px';p.style.color='#8f8f99';p.textContent='이 보기 방식에서는 외부 영상 재생이 막혀 원본 사이트에서 열립니다.';nv.append(p);
   const a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.textContent='원본 열기 ↗';nv.append(a)}
 function embedOf(href){let m;
-  if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(href)))return 'https://www.tiktok.com/embed/v2/'+m[1];
+  if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(href)))return 'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0';
   if((m=/instagram\.com\/reel\/([\w-]+)/.exec(href)))return 'https://www.instagram.com/reel/'+m[1]+'/embed';
   if((m=/youtu\.be\/([\w-]+)|youtube\.com\/(?:watch\?v=|shorts\/)([\w-]+)/.exec(href)))return 'https://www.youtube-nocookie.com/embed/'+(m[1]||m[2])+'?autoplay=1&rel=0&playsinline=1';
   return null}
