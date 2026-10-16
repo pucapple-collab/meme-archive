@@ -526,4 +526,47 @@ addEventListener('resize',()=>{curN=-1;syncBar()});syncBar();
 }catch(err){console.error(err);document.documentElement.classList.remove('swp');document.body.classList.remove('swp')}
 })();
 </script>
+
+<style id="ad-css">
+/* 광고 자리(임시 표시 >_ㅇ): github.io 사이트와 로컬 시험에서만 켜진다. Artifact에서는 꺼져 있다. */
+.adbox{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;border:1px dashed #ffffff40;border-radius:12px;background:#1c1c22;color:#8f8f99;font:700 15px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em}
+.adbox.ad-top{height:56px;margin-bottom:2px}
+.adbox.ad-sheet{height:90px;margin:0 0 -12px}
+.adbox.ad-vh{height:100px;width:min(920px,100%);margin-top:12px}
+.adbox.ad-vv{height:56px;border-radius:0;border-left:0;border-right:0}
+#adbar{position:fixed;z-index:8;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:6px max(12px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:#0b0b0df2}
+#adbar .adbox{max-width:728px;height:50px}
+html.adon #issuebar{bottom:calc(72px + env(safe-area-inset-bottom,0px)) !important}
+@media (max-width:759px){
+ html.adon #ms .sl{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
+ html.adon #ms .hint{bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+}
+@media (min-width:760px){html.adon #ms{padding-bottom:140px}}
+dialog.shd .xx{margin-bottom:-26px}
+#vplay.ad{flex-direction:column;justify-content:flex-start;padding-top:clamp(28px,11dvh,110px)}
+#vplay.ad .vfr.v{height:0;width:min(100%,calc(min(600px,max(240px,100dvh - 270px))*.5625));padding-bottom:min(600px,max(240px,calc(100dvh - 270px)))}
+</style>
+<script id="ad-js">
+(function(){
+try{
+if(!/(^|\.)github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname))return;
+if(!document.documentElement.classList.contains('swp'))return;
+var de=document.documentElement;de.classList.add('adon');
+function box(cls){var d=document.createElement('div');d.className='adbox '+cls;d.setAttribute('role','complementary');d.setAttribute('aria-label','광고');var t=document.createElement('span');t.textContent='>_ㅇ';d.appendChild(t);return d}
+// 1) 카드마다 썸네일 위 광고
+Array.prototype.forEach.call(document.querySelectorAll('#ms .sl .cd'),function(cd){cd.insertBefore(box('ad-top'),cd.firstChild)});
+// 2) 화면 아래 고정
+var bar=document.createElement('div');bar.id='adbar';bar.appendChild(box(''));document.body.appendChild(bar);
+// 3) 자세히 보기 시트: 닫기(x) 줄 아래, 본문 위 (시트와 함께 스크롤)
+Array.prototype.forEach.call(document.querySelectorAll('dialog.shd'),function(d){
+ if(d.querySelector('.infobody'))return;var det=d.querySelector('.det'),body=det&&det.querySelector('.body');
+ if(det&&body)det.insertBefore(box('ad-sheet'),body)});
+// 4) 영상 재생창: 가로형은 아래 빈 공간, 세로형은 영상과 아래 줄 사이
+function deco(o){if(o.__ad)return;o.__ad=1;var bx=o.querySelector('.vbox');if(!bx)return;o.classList.add('ad');
+ var v=o.querySelector('.vfr.v'),low=o.querySelector('.vlow');
+ if(v&&low)bx.insertBefore(box('ad-vv'),low);else o.appendChild(box('ad-vh'))}
+new MutationObserver(function(ms){ms.forEach(function(m){Array.prototype.forEach.call(m.addedNodes,function(n){if(n.nodeType===1&&n.id==='vplay')deco(n)})})}).observe(document.body,{childList:true,subtree:true});
+}catch(e){console.error(e)}
+})();
+</script>
 </body></html>
