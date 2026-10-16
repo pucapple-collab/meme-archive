@@ -543,6 +543,8 @@ html.adon #issuebar{bottom:calc(72px + env(safe-area-inset-bottom,0px)) !importa
 }
 @media (min-width:760px){html.adon #ms{padding-bottom:140px}}
 dialog.shd .xx{margin-bottom:-26px}
+.adsticky{position:sticky;bottom:0;z-index:4;padding:8px max(12px,env(safe-area-inset-left,0px)) calc(8px + env(safe-area-inset-bottom,0px));background:#0b0b0df5}
+.adsticky .adbox{height:50px}
 #vplay.ad{flex-direction:column;justify-content:flex-start;padding-top:clamp(28px,11dvh,110px)}
 #vplay.ad .vfr.v{height:0;width:min(100%,calc(min(600px,max(240px,100dvh - 270px))*.5625));padding-bottom:min(600px,max(240px,calc(100dvh - 270px)))}
 </style>
@@ -560,7 +562,8 @@ var bar=document.createElement('div');bar.id='adbar';bar.appendChild(box(''));do
 // 3) 자세히 보기 시트: 닫기(x) 줄 아래, 본문 위 (시트와 함께 스크롤)
 Array.prototype.forEach.call(document.querySelectorAll('dialog.shd'),function(d){
  if(d.querySelector('.infobody'))return;var det=d.querySelector('.det'),body=det&&det.querySelector('.body');
- if(det&&body)det.insertBefore(box('ad-sheet'),body)});
+ if(det&&body)det.insertBefore(box('ad-sheet'),body);
+ var st=document.createElement('div');st.className='adsticky';st.appendChild(box('ad-sheetb'));d.appendChild(st)});
 // 4) 영상 재생창: 가로형은 아래 빈 공간, 세로형은 영상과 아래 줄 사이
 function deco(o){if(o.__ad)return;o.__ad=1;var bx=o.querySelector('.vbox');if(!bx)return;o.classList.add('ad');
  var v=o.querySelector('.vfr.v'),low=o.querySelector('.vlow');
