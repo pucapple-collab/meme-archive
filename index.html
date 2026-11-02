@@ -297,7 +297,7 @@ try{
 function parse(h){var m;
  if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
  if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0',v:true};
- if((m=/instagram\.com\/(?:reel|p)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
+ if((m=/instagram\.com\/(?:reels?|p|tv)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
  return null}
 function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
 function openP(href,title,info){
@@ -673,7 +673,50 @@ const key=so.value;const arr=secs.slice().sort((a,b)=>key=='o'?a.dataset.o-b.dat
 const f=host.querySelector('#fails');arr.forEach(s=>host.insertBefore(s,f));}
 q.addEventListener('input',run);so.addEventListener('change',run);})();
 
-<\/script><script>document.addEventListener("click",e=>{document.querySelectorAll(".pg details[open]").forEach(d=>{if(!d.contains(e.target))d.open=false})})<\/script></body></html></script><script type="text/plain" id="tabsrc-c"><!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>meme수집기-기업-2호</title><style>
+<\/script><script>document.addEventListener("click",e=>{document.querySelectorAll(".pg details[open]").forEach(d=>{if(!d.contains(e.target))d.open=false})})<\/script><style id="vplay-css">#vplay{position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;-webkit-tap-highlight-color:transparent}#vplay .vbox{width:min(920px,100%);max-height:100%;overflow:auto;background:#111;border-radius:14px;color:#fff;font:14px/1.4 system-ui,sans-serif}#vplay .vtop{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;background:#18181c}#vplay .vtop b{flex:1;min-width:0;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#vplay .vtop button{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:#2a2a30;color:#fff;font-size:16px}#vplay .vfr{position:relative;width:100%;height:0;padding-bottom:56.25%;background:#000}#vplay .vfr.v{width:min(100%,340px);padding-bottom:min(177.78%,600px);margin:0 auto}#vplay iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}#vplay .vlow{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;background:#18181c;font-size:13px}#vplay .vlow a{color:#cfd2ff;text-decoration:none}#vplay .vlow span{color:#9a9aa6}</style><script id="vplay-js">
+(function(){
+try{
+function parse(h){var m;
+ if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
+ if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0',v:true};
+ if((m=/instagram\.com\/(?:reels?|p|tv)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
+ return null}
+function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
+function openP(href,title,info){
+ closeP();var host=document.querySelector('dialog[open]:last-of-type')||document.body;
+ var all=document.querySelectorAll('dialog[open]');if(all.length)host=all[all.length-1];
+ var o=document.createElement('div');o.id='vplay';
+ var box=document.createElement('div');box.className='vbox';
+ var top=document.createElement('div');top.className='vtop';
+ var b=document.createElement('b');b.textContent=title||'영상';
+ var x=document.createElement('button');x.type='button';x.textContent='✕';x.setAttribute('aria-label','닫기');
+ top.appendChild(b);top.appendChild(x);
+ var fr=document.createElement('div');fr.className='vfr'+(info.v?' v':'');
+ var f=document.createElement('iframe');f.src=info.u;f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');f.setAttribute('allowfullscreen','');f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');f.setAttribute('title','영상');
+ fr.appendChild(f);
+ var low=document.createElement('div');low.className='vlow';
+ var a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.textContent='원본에서 열기 ↗';
+ var sp=document.createElement('span');sp.textContent='안 열리면 오른쪽 링크';
+ low.appendChild(sp);low.appendChild(a);
+ box.appendChild(top);box.appendChild(fr);box.appendChild(low);o.appendChild(box);
+ x.addEventListener('click',function(ev){ev.stopPropagation();closeP()});
+ o.addEventListener('click',function(ev){if(ev.target===o)closeP()});
+ host.appendChild(o)}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeP()});
+document.addEventListener('click',function(e){
+ try{
+  var el=e.target;if(el&&el.nodeType===3)el=el.parentNode;
+  var a=el&&el.closest?el.closest('a[href^="http"]'):null;if(!a)return;
+  if(a.closest('#vplay')||a.closest('.infobody'))return;
+  var info=parse(a.href);if(!info)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  var t=a.querySelector('.vb b');var title=(t?t.textContent:a.textContent||'').replace(/\s+/g,' ').trim().slice(0,90);
+  openP(a.href,title,info);
+ }catch(err){}
+},true);
+}catch(err){}
+})();
+<\/script></body></html></script><script type="text/plain" id="tabsrc-c"><!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>meme수집기-기업-2호</title><style>
 :root{--bg:#f7f7f9;--p:#fff;--fg:#16171d;--mu:#5d6170;--ln:#e1e3ea;--ac:#3346d3;--no:#b0283a;--nb:#fde5e8}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#111218;--p:#1a1c24;--fg:#ecedf2;--mu:#a2a6b5;--ln:#2c2f3b;--ac:#8f9cff;--no:#ff8a98;--nb:#3d1a20}}
 :root[data-theme=dark]{--bg:#111218;--p:#1a1c24;--fg:#ecedf2;--mu:#a2a6b5;--ln:#2c2f3b;--ac:#8f9cff;--no:#ff8a98;--nb:#3d1a20}
@@ -750,10 +793,54 @@ const key=so.value;const arr=secs.slice().sort((a,b)=>key=='o'?a.dataset.o-b.dat
 const f=host.querySelector('#linked');arr.forEach(s=>host.insertBefore(s,f));}
 q.addEventListener('input',run);so.addEventListener('change',run);})();
 document.addEventListener('keydown',ev=>{if(ev.key=='Escape'){document.querySelectorAll('.sheet.on').forEach(s=>s.classList.remove('on'));document.body.style.overflow=''}});
-<\/script><script>document.addEventListener("click",e=>{document.querySelectorAll(".pg details[open]").forEach(d=>{if(!d.contains(e.target))d.open=false})})<\/script><script id="sitepager">(function(){var P={"1": "archive/1호/", "2": "archive/2호/", "3": ""},N=3,t=0;function chip(k,left){var u=P[k],a=document.createElement(u!==undefined?"a":"span");a.className="pgchip";a.textContent=left?"← "+k+"호":k+"호 →";if(u!==undefined){a.href=u||"./";}else{a.textContent=left?"← 이전 호 없음":"다음 호 없음"}a.style.cssText="flex:none;border-radius:99px;font:600 13px var(--f-body);padding:8px 13px;text-decoration:none;white-space:nowrap;"+(u!==undefined?"background:#fff;color:#000":"background:#fff2;color:#fff8");return a}function fix(){var b=document.getElementById("sbar");if(!b)return;if(b.querySelector(".pgchip"))return;var c=b.querySelector(".cnt");b.insertBefore(chip(N-1,1),b.firstChild);b.insertBefore(chip(N+1,0),c||null)}var iv=setInterval(function(){fix();if(++t>50)clearInterval(iv)},300);fix()})()</script></body></html></script><script>(function(){var bs=document.querySelectorAll('#tabs button'),v=document.getElementById('tabv'),f=v.querySelector('iframe'),cur='m',made={};
+<\/script><script>document.addEventListener("click",e=>{document.querySelectorAll(".pg details[open]").forEach(d=>{if(!d.contains(e.target))d.open=false})})<\/script><style id="vplay-css">#vplay{position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;-webkit-tap-highlight-color:transparent}#vplay .vbox{width:min(920px,100%);max-height:100%;overflow:auto;background:#111;border-radius:14px;color:#fff;font:14px/1.4 system-ui,sans-serif}#vplay .vtop{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;background:#18181c}#vplay .vtop b{flex:1;min-width:0;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#vplay .vtop button{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:#2a2a30;color:#fff;font-size:16px}#vplay .vfr{position:relative;width:100%;height:0;padding-bottom:56.25%;background:#000}#vplay .vfr.v{width:min(100%,340px);padding-bottom:min(177.78%,600px);margin:0 auto}#vplay iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}#vplay .vlow{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;background:#18181c;font-size:13px}#vplay .vlow a{color:#cfd2ff;text-decoration:none}#vplay .vlow span{color:#9a9aa6}</style><script id="vplay-js">
+(function(){
+try{
+function parse(h){var m;
+ if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
+ if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0',v:true};
+ if((m=/instagram\.com\/(?:reels?|p|tv)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
+ return null}
+function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
+function openP(href,title,info){
+ closeP();var host=document.querySelector('dialog[open]:last-of-type')||document.body;
+ var all=document.querySelectorAll('dialog[open]');if(all.length)host=all[all.length-1];
+ var o=document.createElement('div');o.id='vplay';
+ var box=document.createElement('div');box.className='vbox';
+ var top=document.createElement('div');top.className='vtop';
+ var b=document.createElement('b');b.textContent=title||'영상';
+ var x=document.createElement('button');x.type='button';x.textContent='✕';x.setAttribute('aria-label','닫기');
+ top.appendChild(b);top.appendChild(x);
+ var fr=document.createElement('div');fr.className='vfr'+(info.v?' v':'');
+ var f=document.createElement('iframe');f.src=info.u;f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');f.setAttribute('allowfullscreen','');f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');f.setAttribute('title','영상');
+ fr.appendChild(f);
+ var low=document.createElement('div');low.className='vlow';
+ var a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.textContent='원본에서 열기 ↗';
+ var sp=document.createElement('span');sp.textContent='안 열리면 오른쪽 링크';
+ low.appendChild(sp);low.appendChild(a);
+ box.appendChild(top);box.appendChild(fr);box.appendChild(low);o.appendChild(box);
+ x.addEventListener('click',function(ev){ev.stopPropagation();closeP()});
+ o.addEventListener('click',function(ev){if(ev.target===o)closeP()});
+ host.appendChild(o)}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeP()});
+document.addEventListener('click',function(e){
+ try{
+  var el=e.target;if(el&&el.nodeType===3)el=el.parentNode;
+  var a=el&&el.closest?el.closest('a[href^="http"]'):null;if(!a)return;
+  if(a.closest('#vplay')||a.closest('.infobody'))return;
+  var info=parse(a.href);if(!info)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  var t=a.querySelector('.vb b');var title=(t?t.textContent:a.textContent||'').replace(/\s+/g,' ').trim().slice(0,90);
+  openP(a.href,title,info);
+ }catch(err){}
+},true);
+}catch(err){}
+})();
+<\/script></body></html></script><script>(function(){var bs=document.querySelectorAll('#tabs button'),v=document.getElementById('tabv'),f=v.querySelector('iframe'),cur='m',made={};
 function src(k){var s=document.getElementById('tabsrc-'+k);return s.textContent.replace(/<\\\/script/g,'</'+'script')}
 function go(k){if(k===cur)return;cur=k;bs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.k===k)});
  if(k==='m'){v.hidden=true;document.documentElement.classList.remove('tabon');return}
  f.srcdoc=src(k);v.hidden=false;document.documentElement.classList.add('tabon')}
 bs.forEach(function(b){b.addEventListener('click',function(){go(b.dataset.k)})});
 var m=/[?#&]tab=(g|c)/.exec(location.hash);if(m)go(m[1]);})();</script><!--/tabs-->
+<script id="sitepager">(function(){var P={"1": "archive/1호/", "2": "archive/2호/", "3": ""},N=3,t=0;function chip(k,left){var u=P[k],a=document.createElement(u!==undefined?"a":"span");a.className="pgchip";a.textContent=left?"← "+k+"호":k+"호 →";if(u!==undefined){a.href=u||"./";}else{a.textContent=left?"← 이전 호 없음":"다음 호 없음"}a.style.cssText="flex:none;border-radius:99px;font:600 13px var(--f-body);padding:8px 13px;text-decoration:none;white-space:nowrap;"+(u!==undefined?"background:#fff;color:#000":"background:#fff2;color:#fff8");return a}function fix(){var b=document.getElementById("sbar");if(!b)return;if(b.querySelector(".pgchip"))return;var c=b.querySelector(".cnt");b.insertBefore(chip(N-1,1),b.firstChild);b.insertBefore(chip(N+1,0),c||null)}var iv=setInterval(function(){fix();if(++t>50)clearInterval(iv)},300);fix()})()</script></body></html>
