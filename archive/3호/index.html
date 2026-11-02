@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>html,body{margin:0}</style></head><body>
+<div id="issuebar" style="position:fixed;z-index:9;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto;border-radius:12px;background:#111e;border:1px solid #fff3;backdrop-filter:blur(8px);color:#fff;font:600 12px/1.5 system-ui,sans-serif;padding:7px 14px;text-align:center">지난 호 보는 중 · 최신은 <a href="../../" style="color:#ffd84d">4호</a> · 지난 호:<a href="../../archive/3호/" style="color:#ffd84d;margin-left:10px">3호</a><a href="../../archive/2호/" style="color:#ffd84d;margin-left:10px">2호</a><a href="../../archive/1호/" style="color:#ffd84d;margin-left:10px">1호</a></div>
+<title>밈수집기 3호 (10/24~10/31)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>/* layout: one reading column (920px) with a sticky section nav; meme entries as poster-like blocks with a thumbnail strip */
+:root{
+  --bg:#f7f7f9; --paper:#ffffff; --fg:#16171d; --mut:#5d6170; --ln:#e1e3ea;
+  --ac:#3346d3; --ac-soft:#e8ebff; --hi:#ffd84a; --hi-fg:#3a2f00;
+  --ok:#1f7a4d; --ok-bg:#e3f4ea; --list:#8a5a00; --list-bg:#fff1d6; --read:#3d4a66; --read-bg:#e9edf5; --no:#b0283a; --no-bg:#fde5e8;
+  --f-display:"Black Han Sans","IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111218; --paper:#1a1c24; --fg:#ecedf2; --mut:#a2a6b5; --ln:#2c2f3b;
+  --ac:#8f9cff; --ac-soft:#252a4d; --hi:#ffd84a; --hi-fg:#2a2200;
+  --ok:#6fd3a0; --ok-bg:#183326; --list:#f2bf5e; --list-bg:#3a2c10; --read:#b5c1dc; --read-bg:#252c3c; --no:#ff8a98; --no-bg:#3d1a20;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111218; --paper:#1a1c24; --fg:#ecedf2; --mut:#a2a6b5; --ln:#2c2f3b;
+  --ac:#8f9cff; --ac-soft:#252a4d; --hi:#ffd84a; --hi-fg:#2a2200;
+  --ok:#6fd3a0; --ok-bg:#183326; --list:#f2bf5e; --list-bg:#3a2c10; --read:#b5c1dc; --read-bg:#252c3c; --no:#ff8a98; --no-bg:#3d1a20;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--ac);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:4px}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
+nav.top .in{max-width:920px;margin:0 auto;display:flex;gap:4px 18px;flex-wrap:wrap;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-size:13.5px}
+nav.top a{color:var(--mut);text-decoration:none;font-weight:500}
+nav.top a:hover{color:var(--ac)}
+main{max-width:920px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:56px}
+section,header{scroll-margin-top:64px;min-width:0}
+h1,h2,h3{text-wrap:balance;margin:0}
+.eyebrow{margin:0 0 10px;font-size:12px;letter-spacing:.08em;color:var(--mut);font-weight:500}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,8vw,68px);line-height:1.02;letter-spacing:-.01em}
+h1::after{content:"";display:block;width:92px;height:12px;margin-top:10px;background:var(--hi);transform:skewX(-14deg)}
+blockquote{margin:18px 0 0;padding:0;color:var(--mut);max-width:62ch}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin-top:26px;background:var(--ln);border:1px solid var(--ln);border-radius:10px;overflow:hidden}
+.stats div{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column}
+.stats b{font-family:var(--f-mono);font-size:24px;font-weight:500;font-variant-numeric:tabular-nums}
+.stats span{font-size:12.5px;color:var(--mut)}
+h2{font-size:22px;font-weight:700;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+h2 small{font-size:13px;font-weight:400;color:var(--mut)}
+h3{font-size:18px;font-weight:700}
+.cn{font-family:var(--f-display);font-weight:400;font-size:30px;color:var(--ac);line-height:1}
+.lead{color:var(--mut);margin:0 0 16px;max-width:66ch}
+.steps{margin:12px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px;max-width:70ch}
+.steps b{margin-right:6px}
+.legend{font-size:13.5px;color:var(--mut);display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-top:14px}
+.st{display:inline-block;font-size:11.5px;font-weight:500;padding:1px 8px;border-radius:999px;white-space:nowrap;letter-spacing:.01em}
+.st-ok{background:var(--ok-bg);color:var(--ok)}.st-list{background:var(--list-bg);color:var(--list)}.st-read{background:var(--read-bg);color:var(--read)}.st-no{background:var(--no-bg);color:var(--no)}
+.ex{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ex figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.ex figcaption{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;font-size:14px}
+.ex figcaption span{color:var(--mut);font-size:12.5px}
+.ex figcaption a{margin-left:auto;font-size:12.5px}
+.th{position:relative;display:block;border-radius:8px;overflow:hidden;background:var(--ln);aspect-ratio:16/9;max-width:100%}
+.th.v{aspect-ratio:9/16}
+.th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
+.th span{position:absolute;inset:auto 0 0 0;padding:18px 8px 6px;font-size:11.5px;line-height:1.35;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.72));opacity:0;transition:opacity .2s}
+.th:hover img{transform:scale(1.04)}.th:hover span,.th:focus-visible span{opacity:1}
+.tw{overflow-x:auto;border:1px solid var(--ln);border-radius:10px;background:var(--paper)}
+table.t{border-collapse:collapse;width:100%;font-size:13.5px}
+.t th,.t td{padding:9px 12px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}
+.t th{font-size:12px;color:var(--mut);font-weight:500;background:var(--bg)}
+.t tr:last-child td{border-bottom:0}
+.t .r{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.t .c{font-family:var(--f-mono);color:var(--mut);white-space:nowrap}
+.t .nw{white-space:nowrap}
+table.all{min-width:880px}
+.cat-sec{display:flex;flex-direction:column;gap:18px}
+.cat-sec>.lead{margin-bottom:0}
+.meme{background:var(--paper);border:1px solid var(--ln);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:64px;min-width:0}
+.meme header{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.cat{font-size:12px;padding:2px 8px;border-radius:6px;background:var(--ac-soft);color:var(--ac);font-weight:500}
+.cat.sub{background:transparent;border:1px solid var(--ln);color:var(--mut)}
+.pick{font-size:12px;padding:2px 8px;border-radius:6px;background:var(--hi);color:var(--hi-fg);font-weight:700}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.gal .th.v{grid-row:span 2;aspect-ratio:auto;height:100%;min-height:200px}
+.gal.n6,.gal.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.gal.mix{grid-template-columns:minmax(0,.62fr) minmax(0,1fr);max-width:560px}
+.gal.mix .th.v{min-height:0}
+.gal.one{grid-template-columns:minmax(0,320px)}
+.gal.one .th.v{max-width:200px;aspect-ratio:9/16;height:auto}
+.facts{display:flex;flex-wrap:wrap;gap:6px 28px;margin:0;font-size:13.5px}
+.facts div{display:flex;gap:8px}
+.facts dt{color:var(--mut)}.facts dd{margin:0;font-weight:500}
+.facts .n{font-variant-numeric:tabular-nums}
+.why{margin:0;max-width:68ch}
+.apply{margin:0;padding:10px 12px;border-radius:8px;background:var(--bg);font-size:14px;max-width:72ch}
+.apply b{display:block;font-size:12px;color:var(--ac);margin-bottom:2px}
+details summary{cursor:pointer;font-size:13.5px;color:var(--mut);font-weight:500}
+.links{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--ln)}
+.links li{display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;gap:4px 12px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--ln);font-size:13.5px}
+.links .id{font-family:var(--f-mono);font-size:12px;color:var(--mut)}
+.links .lk{min-width:0;display:flex;flex-direction:column}
+.links .lk a{overflow-wrap:anywhere}
+.links small{color:var(--mut);font-size:12px}
+.links .num{font-size:12.5px;color:var(--mut);font-variant-numeric:tabular-nums;text-align:right}
+.ps{font-size:12px;padding:2px 8px;border-radius:6px;font-weight:500}
+.ps-on{background:var(--hi);color:var(--hi-fg)}.ps-off{border:1px solid var(--ln);color:var(--mut)}
+.note{margin:12px 0 0;padding-left:20px;color:var(--mut);font-size:14px;display:flex;flex-direction:column;gap:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px}
+#src h3{margin-top:20px;font-size:16px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+.f{font:inherit;font-size:12.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--ln);background:var(--paper);color:var(--fg);cursor:pointer}
+.f.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.foot{font-size:12.5px;color:var(--mut);margin-top:10px}
+@media (max-width:640px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ex{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .ex figcaption a{margin-left:0}
+  .two{grid-template-columns:1fr}
+  .links li{grid-template-columns:40px minmax(0,1fr);}
+  .links .num{grid-column:2;text-align:left}
+  .links .st{grid-column:2;justify-self:start}
+  .gal.n6{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){.th img,.th span{transition:none}}
+.new{font-size:11px;font-weight:700;padding:2px 7px;border-radius:6px;background:var(--ac);color:var(--paper);font-style:normal;letter-spacing:.04em}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px 12px}
+.tile{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--fg);min-width:0}
+.tile .ti{position:relative;display:block;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:var(--ac-soft)}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
+.tile:hover img{transform:scale(1.05)}
+.tile .ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--f-display);font-size:34px;color:var(--ac)}
+.tile .ti i{position:absolute;top:6px;font-style:normal;font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:5px}
+.tile .ti i.new{left:6px}
+.tile .ti i.pk{right:6px;background:var(--hi);color:var(--hi-fg)}
+.tile b{font-size:13.5px;line-height:1.35}
+.tile small{font-size:11.5px;color:var(--mut)}
+.tile:focus-visible{outline:2px solid var(--ac);outline-offset:3px;border-radius:8px}
+.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:72ch}
+.log li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;font-size:14px}
+.log time{font-family:var(--f-mono);font-size:12.5px;color:var(--mut)}
+@media (max-width:640px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.log li{grid-template-columns:1fr;gap:2px}}
+@media (prefers-reduced-motion:reduce){.tile img{transition:none}}
+.fr{font-size:11.5px;font-weight:500;padding:2px 8px;border-radius:6px;font-style:normal}
+.fr.on{background:var(--ok-bg);color:var(--ok)}
+.fr.off{border:1px solid var(--ln);color:var(--mut)}
+.tile .ti i.fr{left:auto;right:6px;top:auto;bottom:6px}
+.gal.none{display:flex;align-items:center;justify-content:center;aspect-ratio:16/5;border:1px dashed var(--line,#ccd);border-radius:10px;color:var(--mut,#778);font-size:13px}
+.miss{margin:.6rem 0 0;padding:.55rem .75rem;border-left:3px solid #c9542a;background:color-mix(in srgb,#c9542a 8%,transparent);border-radius:6px;font-size:14px}
+.miss b{display:block;font-size:12px;color:#c9542a;margin-bottom:2px}
+.tops{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.topcol{background:var(--paper);border-radius:14px;padding:14px 16px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.topcol h3{margin:0 0 8px;font-size:15px}
+.topcol ol{margin:0;padding:0;list-style:none;counter-reset:t}
+.topcol li{counter-increment:t;display:grid;grid-template-columns:22px 1fr auto;gap:2px 8px;padding:8px 0;border-top:1px solid color-mix(in srgb,var(--fg) 8%,transparent)}
+.topcol li:first-child{border-top:0}
+.topcol li::before{content:counter(t);grid-row:span 2;font:500 15px 'IBM Plex Mono',monospace;color:var(--ac)}
+.topcol li a{color:inherit;text-decoration:none;min-width:0}
+.topcol li a b{display:block;font-size:14px}
+.topcol li a span{display:block;font-size:12px;opacity:.7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topcol li em{font:500 14px 'IBM Plex Mono',monospace;font-style:normal;align-self:start}
+.topcol li small{grid-column:2/4;font-size:11px;opacity:.6}
+.topcol .lead{margin:6px 0 0;font-size:12px}
+
+.govs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.gov{display:flex;flex-direction:column;gap:4px;background:var(--paper);border:1px solid var(--ln);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--fg);padding-bottom:12px}
+.gov img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;margin-bottom:6px}
+.gov>*:not(img){padding:0 14px}
+.gov .gm{font-size:12px;color:var(--ac);font-weight:700}
+.gov b{font-size:16px}
+.gov .gt{font-size:13.5px}
+.gov .gn{font-size:13px;color:var(--mut)}
+.gov small{font-family:var(--f-mono);font-size:12px;color:var(--mut);margin-top:2px}
+.gov:hover b{color:var(--ac)}
+
+.ng{margin:18px 0 0;font-size:15px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.ng a{color:var(--fg);text-decoration:none}.ng a:hover{color:var(--ac)}.ng small{font-size:12px;color:var(--mut);font-weight:400}#new .ng+.links{margin-top:6px}
+
+.gv,.rx{border-radius:10px;padding:10px 12px;font-size:13.5px;background:var(--bg);border:1px solid var(--ln)}
+.gv{border-left:4px solid var(--ac)}
+.gv.alt{border-left-color:var(--hi)}
+.gv .kd{font-style:normal;font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;background:var(--hi);color:var(--hi-fg);margin-right:6px}
+.gv>b,.rx>b{display:block;font-size:12px;color:var(--ac);margin-bottom:4px}
+.gv.none,.rx.none{display:flex;gap:10px;align-items:baseline;border-left-width:1px}
+.gv.none>b,.rx.none>b{color:var(--mut);margin:0}
+.gv.none span,.rx.none span{color:var(--mut);font-size:12.5px}
+.gv ul{list-style:none;margin:0;padding:0}
+.gv li{display:flex;flex-direction:column;padding:4px 0}
+.gv li a b{color:var(--fg)}
+.gv small,.rx small{color:var(--mut);font-size:12px}
+.rx>small{display:block;margin:-2px 0 6px}
+.rx table{width:100%;border-collapse:collapse}
+.rx th{font-size:11.5px;color:var(--mut);font-weight:500;text-align:left;padding:4px 6px;border-bottom:1px solid var(--ln)}
+.rx td{padding:6px;border-bottom:1px solid var(--ln);vertical-align:top}
+.rx td a{display:block;overflow-wrap:anywhere}
+.rx td:first-child{min-width:140px}
+@media (max-width:560px){.rx th:nth-child(2),.rx td:nth-child(2){display:none}}
+.rx .r{text-align:right;font-family:var(--f-mono);font-size:12.5px;white-space:nowrap}
+.rx td.top{font-weight:700;color:var(--fg)}
+.rx td.na{color:var(--mut);font-family:var(--f-body);font-size:11.5px}
+.rx tr:last-child td{border-bottom:0}
+
+.vg{border:1px solid var(--ln);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.vg>h4{margin:0 0 6px;font-size:12px;color:var(--ac);font-weight:700}
+.vg>h4 small{color:var(--mut);font-weight:400;margin-left:6px}
+.vg.og{border-left:4px solid var(--fg)}.vg.gv2{border-left:4px solid var(--ac)}.vg.gv2.alt{border-left-color:var(--hi)}
+.vg.none>h4{color:var(--mut)}.vg .nf{margin:0;color:var(--mut);font-size:13px}.vg .nf a,.vg .src a{color:var(--ac)}.vg .src{margin:4px 0 0;font-size:12px;color:var(--mut)}
+.vi{display:grid;grid-template-columns:128px minmax(0,1fr);gap:12px;padding:8px 0;border-top:1px solid var(--ln);text-decoration:none;color:inherit;align-items:center}
+.vg>h4+.vi{border-top:0;padding-top:2px}
+.vi .vt{display:block;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--ln)}
+.vi .vt img{width:100%;height:100%;object-fit:cover;display:block}
+.vi .vt .ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:11px;color:var(--mut)}
+.vi .vb{display:flex;flex-direction:column;gap:2px;min-width:0}
+.vi .vb b{font-size:14px;font-weight:500;color:var(--fg);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vi .vb small{font-size:12px;color:var(--mut);overflow-wrap:anywhere}
+.vi .vb em{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--mut)}
+.vi:hover .vb b{text-decoration:underline}
+.vi .kd{font-style:normal;font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;background:var(--hi);color:var(--hi-fg);margin-right:6px}
+.vi.big{grid-template-columns:200px minmax(0,1fr)}
+.vi.big .vb b{font-size:15px}
+
+.sumbox{margin:8px 0 12px;display:grid;gap:6px;padding:10px 12px;border-radius:10px;background:var(--ac-soft)}
+.sumbox div{display:grid;grid-template-columns:1.8em minmax(0,1fr);gap:8px;font-size:13.5px;line-height:1.55}
+.sumbox dt{font-size:17px;line-height:1.35}.sumbox dd{margin:0;color:var(--fg)}
+
+.fail{border:1px solid var(--ln);border-left:4px solid #d9534f;border-radius:10px;padding:12px 14px;margin:0 0 12px;background:var(--bg)}
+.fail h3{margin:0 0 2px;font-size:16px}.fail .fw{margin:0 0 8px;color:var(--mut);font-size:12.5px}
+.fail dl{margin:0;display:grid;gap:5px}.fail dl div{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:8px;font-size:13.5px;line-height:1.55}
+.fail .fth{margin:0 0 8px}.fail .fth img{display:block;max-width:100%;border-radius:8px}.fail .fth figcaption{font-size:11.5px;color:var(--mut);margin-top:3px}
+.fail dt{font-weight:700;color:var(--mut)}.fail dd{margin:0}.fail .src{margin:8px 0 0;font-size:12px;color:var(--mut)}.fail .src a{color:var(--ac)}
+@media (max-width:560px){.fail dl div{grid-template-columns:1fr;gap:0}}
+
+.slinks{list-style:none;margin:0;padding:0;border-top:1px solid var(--ln)}
+.slinks li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 12px;padding:8px 0;border-bottom:1px solid var(--ln);font-size:13.5px}
+.slinks a{overflow-wrap:anywhere}.slinks small{grid-column:1;color:var(--mut);font-size:12px}
+.slinks .num{grid-row:1/3;grid-column:2;align-self:center;font-family:var(--f-mono);font-size:12.5px;color:var(--mut);white-space:nowrap}
+.hero .sub{margin:16px 0 0;color:var(--mut);max-width:60ch}
+.tile .ph{display:block;width:100%;height:100%}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.cats{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:6px;max-width:68ch}
+.cats li{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:10px;font-size:14px;align-items:baseline}
+.cats a{text-decoration:none}.cats b{color:var(--fg)}.cats span{color:var(--mut)}
+@media (max-width:560px){.cats li{grid-template-columns:1fr;gap:0}}
+nav.top a.sumbtn{border:1.5px solid var(--fg);color:var(--fg);border-radius:6px;padding:1px 10px;font-weight:700}
+nav.top a.sumbtn:hover{border-color:var(--ac);color:var(--ac)}
+.vg .rk{margin:10px 0 2px;font-size:12px;font-weight:700;color:var(--fg)}
+.vg>h4+.rk{margin-top:0}
+.tiles:has(.tile.sm){grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.tile.sm{border:1px solid var(--ln);border-radius:10px;padding:10px;background:var(--bg)}
+.tile.sm .when{font-size:12px;color:var(--ac);font-weight:500}
+.tile.sm ul{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:4px}
+.tile.sm li{font-size:12.5px;line-height:1.5;color:var(--fg)}
+.tile.sm li i{font-style:normal;font-weight:700;color:var(--mut);margin-right:6px;font-size:11.5px}
+@media (max-width:640px){.tiles:has(.tile.sm){grid-template-columns:1fr}}
+@media (max-width:560px){.vi{grid-template-columns:104px minmax(0,1fr);gap:10px}.vi.big{grid-template-columns:140px minmax(0,1fr)}}
+</style>
+<nav class="top"><div class="in"><span class="sumbtn" style="background:var(--hi);color:var(--hi-fg);border-radius:6px;padding:1px 10px;font-weight:700">밈수집기 3호 · 지금 보는 페이지</span><a class="sumbtn" href="https://claude.ai/artifact/AvtRyqKKPKKSbXpmMJnTMr" target="_blank" rel="noopener">밈수집기 1호</a><a class="sumbtn" href="https://claude.ai/artifact/J56bKLPzJsz7mWzHeyJ51Z" target="_blank" rel="noopener">밈수집기 2호</a><a class="sumbtn" href="https://claude.ai/artifact/3kU4Pob3LJgYeKpvpPNgDq" target="_blank" rel="noopener">공공기관 밈 패러디 모음 1호</a><a class="sumbtn" href="https://claude.ai/artifact/94ESsVnun69hEefC2ciSE1" target="_blank" rel="noopener">대기업 밈 패러디 모음 1호</a><a class="sumbtn" href="#map">요약</a><a href="#c-dance">챌린지&amp;패러디</a><a href="#c-react">상황·리액션</a><a href="#fails">망한 사례</a></div></nav>
+<main>
+<header class="hero" id="sum">
+<p class="eyebrow">밈수집기 · SNS 영상 참고 자료 · 수집 10/24~10/31</p>
+<h1>밈수집기 3호 (10/24~10/31)</h1>
+<ul class="cats"><li><a href="#c-dance"><b>챌린지&amp;패러디</b></a><span>정해진 동작·노래를 그대로 따라 하거나 하는 사람만 바꾼다.</span></li><li><a href="#c-react"><b>상황·리액션</b></a><span>장면이나 반응 한 컷을 다른 상황에 옮겨 쓴다.</span></li></ul>
+<p class="sub">이번 호는 10/24~10/31에 모은 자료만 담았습니다. 지난 호는 위 버튼으로 따로 봅니다.</p>
+<div class="stats">
+<div><b>4</b><span>새 밈</span></div>
+<div><b>2</b><span>분류</span></div>
+<div><b>21</b><span>관련 영상</span></div>
+<div><b>10/31</b><span>수치 기준일</span></div>
+</div>
+</header>
+
+<section id="updlist"><h2>이번 호 업데이트 영상<small>10/24~10/31 수집 · 21개</small></h2><p class="lead">이번 호 카드에 새로 들어간 영상입니다(최근 추가 순). 지난 호 밈의 새 영상 0개는 1호 카드의 '추가 영상'에 넣었습니다.</p><ul class="slinks"><li><a href="https://www.instagram.com/p/DeJsgjGvgeP/" target="_blank" rel="noopener">다이소 치이카와 DIY(prof.ttuk)</a><small>10/31 추가 · 다이소 치이카와 별똥별·토벌봉 DIY · 인스타 @prof.ttuk</small></li><li><a href="https://www.instagram.com/p/De9HW8TyGfL/" target="_blank" rel="noopener">다이소 치이카와 DIY(sol__08.3)</a><small>10/31 추가 · 다이소 치이카와 별똥별·토벌봉 DIY · 인스타 @sol__08.3</small></li><li><a href="https://www.instagram.com/p/DeiEsAGyI4L/" target="_blank" rel="noopener">다이소 치이카와 DIY(ddanddan_mommy)</a><small>10/31 추가 · 다이소 치이카와 별똥별·토벌봉 DIY · 인스타 @ddanddan_mommy</small></li><li><a href="https://www.instagram.com/p/De8c9p6SB5i/" target="_blank" rel="noopener">체포하겠어 뱅진 챌린지(_somstarlatte_)</a><small>10/31 추가 · 아일릿 체포하겠어 · 인스타 @_somstarlatte_</small></li><li><a href="https://www.instagram.com/reel/De9BeF4TaVd/" target="_blank" rel="noopener">체포하겠어 앵콜 무대 릴스(aht.playlist)</a><small>10/31 추가 · 아일릿 체포하겠어 · 인스타 @aht.playlist</small></li><li><a href="https://youtu.be/srFVCFP-Dro" target="_blank" rel="noopener">맥도날드에서 랩으로 주문하는 존박 (Cover) (1시간 듣기)</a><small>10/30 추가 · 존박 맥도날드 랩 주문(맥도날드에서 랩으로 주문하는 존박) · 유튜브 ERRDAY HIPHOP (얼데이힙합)</small></li><li><a href="https://youtu.be/7ylUJpQPbwE" target="_blank" rel="noopener">맥도날드에서 랩으로 주문하는 존박 (AI 커버)</a><small>10/30 추가 · 존박 맥도날드 랩 주문(맥도날드에서 랩으로 주문하는 존박) · 유튜브 오색플로우</small></li><li><a href="https://youtu.be/vUXQmYmDDMk" target="_blank" rel="noopener">존박 X 곽진언 - 맥도날드 랩 리마스터링 (with 로꼬)</a><small>10/30 추가 · 존박 맥도날드 랩 주문(맥도날드에서 랩으로 주문하는 존박) · 유튜브 프로듀서 강도연</small></li><li><a href="https://youtu.be/mKrIcRDNnwU" target="_blank" rel="noopener">맥도날드에서 랩으로 주문하는 존박 (Cover)</a><small>10/30 추가 · 존박 맥도날드 랩 주문(맥도날드에서 랩으로 주문하는 존박) · 유튜브 ERRDAY HIPHOP (얼데이힙합)</small></li><li><a href="https://youtu.be/KA_dvJyzykM" target="_blank" rel="noopener">누리꾼 입 벌어진 존박 &#x27;주문 랩&#x27;…결국 &#x27;맥날 메뉴&#x27;로 나왔다｜지금 이 장면 (JTBC 뉴스 보도 영상)</a><small>10/30 추가 · 존박 맥도날드 랩 주문(맥도날드에서 랩으로 주문하는 존박) · 유튜브 JTBC News</small></li><li><a href="https://youtu.be/PnaKtFPlKoo" target="_blank" rel="noopener">맥도날드에서 랩으로 주문하는 존박(with 로꼬)</a><small>10/30 추가 · 존박 맥도날드 랩 주문(맥도날드에서 랩으로 주문하는 존박) · 유튜브 존이냐박이냐(존박 채널)</small></li><li><a href="https://youtu.be/B3gc-XwzwTg" target="_blank" rel="noopener">[라디오스타 선공개] 야생남 김민, 이거 내 이모지야🤸 MBC 261028 방송</a><small>10/30 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 라디오스타(MBC)</small></li><li><a href="https://youtu.be/WhU72xY8YuY" target="_blank" rel="noopener">[🐯HO랑이 ] EP. 22 20년생 호랑이 무궁찡🌺이거 제 이모지야 | 한, 도, 무궁</a><small>10/30 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 대한민국 산림청</small></li><li><a href="https://youtu.be/NFw1KIVeWIA" target="_blank" rel="noopener">안녕~ 돼지찡입니다! &quot;🐷&quot; 이거 제 이모지야 그리고 &quot;🍺&quot; 이것도</a><small>10/27 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 최술진</small></li><li><a href="https://youtu.be/DB_bfBmZbi4" target="_blank" rel="noopener">VLOG. 이거 직장인 이모지야 직장인 월간 브이로그 10월호</a><small>10/27 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 윤정원 Yoon Garden</small></li><li><a href="https://youtu.be/a6ajltFzPtk" target="_blank" rel="noopener">VLOG, 오랜위시 청산 발렌시아가 로데오백 콰삭모짜킹 먹고 난 후 이거 내 이모지야</a><small>10/27 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 소소soso</small></li><li><a href="https://youtu.be/2EwFvwHO-Fs" target="_blank" rel="noopener">이거 제 이모지야 (이모지 6개를 붙인 제목)</a><small>10/27 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 HYUNJIN현진</small></li><li><a href="https://youtu.be/LJwoxh7vmOo" target="_blank" rel="noopener">[KIOF LOG] EP.22 이거 내 이모지야! 밥스카이 수원 맛집여지도 (KISS OF LIFE 공식 채널 브이로그)</a><small>10/27 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 KISS OF LIFE</small></li><li><a href="https://youtu.be/qESaAL7jl-A" target="_blank" rel="noopener">[#맛따라길따라대명이따라] 안녕! 대명입니다 이거 제 이모지야~ (김대명 클립)</a><small>10/27 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 디글 클래식 :Diggle Classic</small></li><li><a href="https://youtu.be/3juH6KGPvfY" target="_blank" rel="noopener">[#콩콩팡팡] 광수입니다~! 이거 제 이모지야 (이광수 감정 변화 클립)</a><small>10/27 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 tvN D ENT</small></li><li><a href="https://youtu.be/hiAW8vJhk0U" target="_blank" rel="noopener">이거 에투라를 향한 제 이모지야! A2O LITE &#x27;NEON&#x27; #뮤직뱅크 (KBS 뮤직뱅크 제목에 말투 사용)</a><small>10/27 추가 · 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기 · 유튜브 KBS 한국방송</small></li></ul></section>
+<section id="map">
+<h2>요약<small>누르면 자세한 내용으로 이동</small></h2>
+<div class="tiles"><a class="tile sm" href="#G49"><span class="ti"><img src="../../thumbs/hiAW8vJhk0U.jpg" alt="" loading="lazy"></span><b>아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기</b><small>챌린지&amp;패러디</small><span class="when">NEW · 2026-10 아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기</span></a><a class="tile sm" href="#G52"><span class="ti"><span class="ph"></span></span><b>다이소 치이카와 별똥별·토벌봉 DIY</b><small>챌린지&amp;패러디</small><span class="when">NEW · 2026-10 다이소 치이카와 DIY</span></a><a class="tile sm" href="#G50"><span class="ti"><img src="../../thumbs/PnaKtFPlKoo.jpg" alt="" loading="lazy"></span><b>존박 맥도날드 랩 주문(맥도날드에서 랩으로 주문하는 존박)</b><small>상황·리액션</small><span class="when">NEW · 2026-10 존박 맥도날드 랩 주문</span></a><a class="tile sm" href="#G51"><span class="ti"><span class="ph"></span></span><b>아일릿 체포하겠어</b><small>상황·리액션</small><span class="when">NEW · 2026-10 아일릿 체포하겠어 챌린지</span></a></div>
+</section>
+
+<section class="cat-sec" id="c-dance"><h2>챌린지&amp;패러디<small>2개</small></h2><p class="lead">정해진 동작·노래를 그대로 따라 하거나 하는 사람만 바꾼다.</p><article class="meme" id="G49"><header><h3>아이찡 &#x27;이거 제 이모지야&#x27; 자기소개 따라하기</h3></header><p class="why">신인 A2O LITE의 아이찡이 &#x27;나를 가장 잘 표현하는 이모지&#x27;를 고르며 &#x27;안녕! 아이찡입니다, 이거 제 이모지야&#x27;라고 소개하고 머리를 넘기는 장면이 귀엽다며 퍼졌다. &#x27;안녕! ○○입니다 이거 제 이모지야 + 이모지&#x27;가 자기소개 틀이 되어 브이로그·예능 클립·아이돌 채널 제목과 인스타 릴스에 쓰인다.</p><dl class="sumbox"><div><dt title="영상" aria-label="영상">🎬</dt><dd>아이찡(A2O LITE)이 이모지를 고르며 &#x27;안녕! 아이찡입니다, 이거 제 이모지야&#x27;라고 소개하고 머리를 넘기는 장면을 따라 하는 자기소개 말투·동작 밈.</dd></div><div><dt title="유행 이유" aria-label="유행 이유">🔥</dt><dd>방송·아이돌 채널이 제목에 바로 가져다 쓸 만큼 짧고 쉬운 틀. MBC 라디오스타 선공개 113.2만·KBS 뮤직뱅크 24.5만 회(10/30), 인스타 또또 패러디 120만 회는 캐릿 보도 수치.</dd></div><div><dt title="재미 포인트" aria-label="재미 포인트">😂</dt><dd>&#x27;안녕! ○○입니다 이거 제 이모지야 + 이모지&#x27;에 사람·동물·직장만 바꿔 넣으면 된다. 산림청은 서울대공원 호랑이 &#x27;무궁찡&#x27;으로 썼다(10/29). 아이찡 가족 관련 보도가 같은 시기 나와 활용 전 확인 필요.</dd></div></dl><div class="vg og none"><h4>원본</h4><p class="nf">원본 영상을 찾지 못함 · <a href="https://www.instagram.com/reel/Degyrp0PL1Q/" target="_blank" rel="noopener">원본 후보(미확정): 에스콰이어 코리아 인스타 릴스 &#x27;A2O LITE 아홉 멤버의 이모지 자기소개&#x27;(M519, 게시일 10/15는 해설 사이트 한 곳 기준). 캐릿(10/23)과 해설 사이트가 원본 링크로 단 것까지만 확인, 인스타 직접 못 봄. Know Your Meme 항목은 찾지 않음.</a></p></div><div class="vg gv2"><h4>기업 패러디 <small>공공기관 우선 · 없으면 기업·방송·연예인·인플루언서</small></h4><a class="vi" href="https://youtu.be/WhU72xY8YuY" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/WhU72xY8YuY.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">공공기관</i>[🐯HO랑이 ] EP. 22 20년생 호랑이 무궁찡🌺이거 제 이모지야 | 한, 도, 무궁</b><small>유튜브 · 대한민국 산림청 · 2026-10-29</small><em>조회 6,355 · 좋아요 335 · 댓글 48</em></span></a><a class="vi" href="https://youtu.be/B3gc-XwzwTg" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/B3gc-XwzwTg.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">방송</i>[라디오스타 선공개] 야생남 김민, 이거 내 이모지야🤸 MBC 261028 방송</b><small>유튜브 · 라디오스타(MBC) · 2026-10-27</small><em>조회 113만 · 좋아요 2,430 · 댓글 462</em></span></a><a class="vi" href="https://youtu.be/hiAW8vJhk0U" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/hiAW8vJhk0U.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">방송</i>이거 에투라를 향한 제 이모지야! A2O LITE &#x27;NEON&#x27; #뮤직뱅크 (KBS 뮤직뱅크 제목에 말투 사용)</b><small>유튜브 · KBS 한국방송 · 2026-10-24</small><em>조회 24만 · 좋아요 1,617 · 댓글 99</em></span></a><a class="vi" href="https://youtu.be/3juH6KGPvfY" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/3juH6KGPvfY.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">방송</i>[#콩콩팡팡] 광수입니다~! 이거 제 이모지야 (이광수 감정 변화 클립)</b><small>유튜브 · tvN D ENT · 2026-10-24</small><em>조회 1.4만 · 좋아요 26 · 댓글 1</em></span></a><a class="vi" href="https://youtu.be/qESaAL7jl-A" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/qESaAL7jl-A.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">방송</i>[#맛따라길따라대명이따라] 안녕! 대명입니다 이거 제 이모지야~ (김대명 클립)</b><small>유튜브 · 디글 클래식 :Diggle Classic · 2026-10-23</small><em>조회 6.5만 · 좋아요 238 · 댓글 9</em></span></a><a class="vi" href="https://youtu.be/LJwoxh7vmOo" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/LJwoxh7vmOo.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">연예인</i>[KIOF LOG] EP.22 이거 내 이모지야! 밥스카이 수원 맛집여지도 (KISS OF LIFE 공식 채널 브이로그)</b><small>유튜브 · KISS OF LIFE · 2026-10-27</small><em>조회 3.0만 · 좋아요 1,176 · 댓글 84</em></span></a></div><div class="vg rx2"><h4>일반 패러디 <small>일반 계정 · 10/31 기준</small></h4><p class="rk">조회수 TOP3</p><a class="vi" href="https://youtu.be/2EwFvwHO-Fs" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/2EwFvwHO-Fs.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">조회수 1위</i>이거 제 이모지야 (이모지 6개를 붙인 제목)</b><small>유튜브 · HYUNJIN현진 · 2026-10-26</small><em>조회 8.4만 · 좋아요 1,172 · 댓글 404</em></span></a><a class="vi" href="https://youtu.be/a6ajltFzPtk" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/a6ajltFzPtk.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">조회수 2위</i>VLOG, 오랜위시 청산 발렌시아가 로데오백 콰삭모짜킹 먹고 난 후 이거 내 이모지야</b><small>유튜브 · 소소soso · 2026-10-27</small><em>조회 4.9만 · 좋아요 404 · 댓글 72</em></span></a><a class="vi" href="https://youtu.be/DB_bfBmZbi4" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/DB_bfBmZbi4.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">조회수 3위</i>VLOG. 이거 직장인 이모지야 직장인 월간 브이로그 10월호</b><small>유튜브 · 윤정원 Yoon Garden · 2026-10-26</small><em>조회 1.2만 · 좋아요 96 · 댓글 39</em></span></a><p class="rk">댓글 TOP3</p><a class="vi" href="https://youtu.be/2EwFvwHO-Fs" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/2EwFvwHO-Fs.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">댓글 1위</i>이거 제 이모지야 (이모지 6개를 붙인 제목)</b><small>유튜브 · HYUNJIN현진 · 2026-10-26</small><em>조회 8.4만 · 좋아요 1,172 · 댓글 404</em></span></a><a class="vi" href="https://youtu.be/NFw1KIVeWIA" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/NFw1KIVeWIA.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">댓글 2위</i>안녕~ 돼지찡입니다! &quot;🐷&quot; 이거 제 이모지야 그리고 &quot;🍺&quot; 이것도</b><small>유튜브 · 최술진 · 2026-10-23</small><em>조회 1.0만 · 좋아요 139 · 댓글 76</em></span></a><a class="vi" href="https://youtu.be/a6ajltFzPtk" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/a6ajltFzPtk.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">댓글 3위</i>VLOG, 오랜위시 청산 발렌시아가 로데오백 콰삭모짜킹 먹고 난 후 이거 내 이모지야</b><small>유튜브 · 소소soso · 2026-10-27</small><em>조회 4.9만 · 좋아요 404 · 댓글 72</em></span></a></div></article><article class="meme" id="G52"><header><h3>다이소 치이카와 별똥별·토벌봉 DIY</h3></header><p class="why">다이소에서 파는 재료로 치이카와 별똥별·토벌봉을 직접 만드는 DIY 릴스가 이어졌다. 재료가 싸고 따라 만들기 쉬워 일반 계정이 계속 올린다.</p><dl class="sumbox"><div><dt title="영상" aria-label="영상">🎬</dt><dd>다이소 재료로 치이카와 별똥별·토벌봉을 만드는 DIY 릴스 밈.</dd></div><div><dt title="유행 이유" aria-label="유행 이유">🔥</dt><dd>ddanddan_mommy 5.57만·sol__08.3 8,006 좋아요(10/31). 10/6부터 10/26까지 여러 계정이 올림.</dd></div><div><dt title="재미 포인트" aria-label="재미 포인트">😂</dt><dd>공공기관 패러디는 못 찾음(미확인). 조회수·썸네일은 인스타 페이지에 안 나와 비어 있음.</dd></div></dl><div class="vg og none"><h4>원본</h4><p class="nf">원본 영상을 찾지 못함 · <a href="https://www.instagram.com/p/DeiEsAGyI4L/" target="_blank" rel="noopener">원본 후보(미확정): 가장 오래된 열람 게시물은 prof.ttuk(10/6), 가장 반응 큰 것은 ddanddan_mommy(10/15). 원조 여부는 확인 못 함.</a></p></div><div class="vg gv2 none"><h4>기업 패러디</h4><p class="nf">찾지 못함 (10/31 기준)</p></div><div class="vg rx2"><h4>일반 패러디 <small>일반 계정 · 10/31 기준</small></h4><p class="rk">조회수 TOP3</p><a class="vi" href="https://www.instagram.com/p/DeiEsAGyI4L/" target="_blank" rel="noopener"><span class="vt"><span class="ph">인스타</span></span><span class="vb"><b><i class="kd">조회수 1위</i>다이소 치이카와 DIY(ddanddan_mommy)</b><small>인스타 · @ddanddan_mommy · 2026-10-15</small><em>좋아요 5.6만 · 댓글 137</em></span></a><a class="vi" href="https://www.instagram.com/p/De9HW8TyGfL/" target="_blank" rel="noopener"><span class="vt"><span class="ph">인스타</span></span><span class="vb"><b><i class="kd">조회수 2위</i>다이소 치이카와 DIY(sol__08.3)</b><small>인스타 · @sol__08.3 · 2026-10-26</small><em>좋아요 8,006 · 댓글 18</em></span></a><a class="vi" href="https://www.instagram.com/p/DeJsgjGvgeP/" target="_blank" rel="noopener"><span class="vt"><span class="ph">인스타</span></span><span class="vb"><b><i class="kd">조회수 3위</i>다이소 치이카와 DIY(prof.ttuk)</b><small>인스타 · @prof.ttuk · 2026-10-06</small><em>좋아요 560</em></span></a><p class="rk">댓글 TOP2</p><a class="vi" href="https://www.instagram.com/p/DeiEsAGyI4L/" target="_blank" rel="noopener"><span class="vt"><span class="ph">인스타</span></span><span class="vb"><b><i class="kd">댓글 1위</i>다이소 치이카와 DIY(ddanddan_mommy)</b><small>인스타 · @ddanddan_mommy · 2026-10-15</small><em>좋아요 5.6만 · 댓글 137</em></span></a><a class="vi" href="https://www.instagram.com/p/De9HW8TyGfL/" target="_blank" rel="noopener"><span class="vt"><span class="ph">인스타</span></span><span class="vb"><b><i class="kd">댓글 2위</i>다이소 치이카와 DIY(sol__08.3)</b><small>인스타 · @sol__08.3 · 2026-10-26</small><em>좋아요 8,006 · 댓글 18</em></span></a></div></article></section><section class="cat-sec" id="c-react"><h2>상황·리액션<small>2개</small></h2><p class="lead">장면이나 반응 한 컷을 다른 상황에 옮겨 쓴다.</p><article class="meme" id="G50"><header><h3>존박 맥도날드 랩 주문(맥도날드에서 랩으로 주문하는 존박)</h3></header><p class="why">가수 존박이 래퍼 로꼬에게 랩 레슨을 받은 뒤 맥도날드 매장에서 신메뉴 빅아치 등을 랩으로 주문하는 영상. 평소 점잖은 이미지와 진지한 랩의 낙차, 곽진언의 힘 뺀 도입, 리듬 타는 직원 반응이 웃겨서 쇼츠·커버·AI 커버·1시간 반복본으로 퍼졌다. 맥도날드 협업 콘텐츠라는 보도가 있고, 시청자 댓글(좋아요 약 1.5~1.7만)에 나온 &#x27;존박 세트&#x27; 아이디어를 맥도날드가 10/28 공식 인스타 광고로 받아 썼다.</p><dl class="sumbox"><div><dt title="영상" aria-label="영상">🎬</dt><dd>가수 존박이 로꼬에게 랩 레슨을 받고 맥도날드 매장에서 신메뉴를 랩으로 주문한 영상. 빅아치 출시(10/22)에 맞춘 맥도날드 협업이라는 보도가 있다.</dd></div><div><dt title="유행 이유" aria-label="유행 이유">🔥</dt><dd>점잖은 이미지와 진지한 랩의 낙차. 원본 399.2만 회(10/30), 일반 계정 커버 69.4만·영어 랩 패러디 47.9만 회, JTBC 보도 67.9만 회.</dd></div><div><dt title="재미 포인트" aria-label="재미 포인트">😂</dt><dd>댓글에서 나온 &#x27;존박 세트&#x27; 아이디어를 맥도날드가 10/28 공식 인스타 광고로 받아 썼다(기사 기준). 커버·AI 커버·1시간 반복본으로 음원처럼 퍼졌다.</dd></div></dl><div class="vg og"><h4>원본</h4><a class="vi" href="https://youtu.be/PnaKtFPlKoo" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/PnaKtFPlKoo.jpg" alt="" loading="lazy"></span><span class="vb"><b>맥도날드에서 랩으로 주문하는 존박(with 로꼬)</b><small>유튜브 · 존이냐박이냐(존박 채널) · 2026-10-23</small><em>조회 399만 · 좋아요 4.9만 · 댓글 5,400</em></span></a></div><div class="vg gv2"><h4>기업 패러디 <small>공공기관 우선 · 없으면 기업·방송·연예인·인플루언서</small></h4><a class="vi" href="https://youtu.be/KA_dvJyzykM" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/KA_dvJyzykM.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">방송</i>누리꾼 입 벌어진 존박 &#x27;주문 랩&#x27;…결국 &#x27;맥날 메뉴&#x27;로 나왔다｜지금 이 장면 (JTBC 뉴스 보도 영상)</b><small>유튜브 · JTBC News · 2026-10-29</small><em>조회 68만 · 좋아요 2,297 · 댓글 437</em></span></a></div><div class="vg rx2"><h4>일반 패러디 <small>일반 계정 · 10/31 기준</small></h4><p class="rk">조회수 TOP3</p><a class="vi" href="https://youtu.be/mKrIcRDNnwU" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/mKrIcRDNnwU.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">조회수 1위</i>맥도날드에서 랩으로 주문하는 존박 (Cover)</b><small>유튜브 · ERRDAY HIPHOP (얼데이힙합) · 2026-10-25</small><em>조회 69만 · 좋아요 6,196 · 댓글 414</em></span></a><a class="vi" href="https://youtu.be/vUXQmYmDDMk" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/vUXQmYmDDMk.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">조회수 2위</i>존박 X 곽진언 - 맥도날드 랩 리마스터링 (with 로꼬)</b><small>유튜브 · 프로듀서 강도연 · 2026-10-27</small><em>조회 15만 · 좋아요 860 · 댓글 68</em></span></a><a class="vi" href="https://youtu.be/7ylUJpQPbwE" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/7ylUJpQPbwE.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">조회수 3위</i>맥도날드에서 랩으로 주문하는 존박 (AI 커버)</b><small>유튜브 · 오색플로우 · 2026-10-27</small><em>조회 8.4만 · 좋아요 947 · 댓글 88</em></span></a><p class="rk">댓글 TOP3</p><a class="vi" href="https://youtu.be/mKrIcRDNnwU" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/mKrIcRDNnwU.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">댓글 1위</i>맥도날드에서 랩으로 주문하는 존박 (Cover)</b><small>유튜브 · ERRDAY HIPHOP (얼데이힙합) · 2026-10-25</small><em>조회 69만 · 좋아요 6,196 · 댓글 414</em></span></a><a class="vi" href="https://youtu.be/srFVCFP-Dro" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/srFVCFP-Dro.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">댓글 2위</i>맥도날드에서 랩으로 주문하는 존박 (Cover) (1시간 듣기)</b><small>유튜브 · ERRDAY HIPHOP (얼데이힙합) · 2026-10-27</small><em>조회 12만 · 좋아요 1,541 · 댓글 115</em></span></a><a class="vi" href="https://youtu.be/7ylUJpQPbwE" target="_blank" rel="noopener"><span class="vt"><img src="../../thumbs/7ylUJpQPbwE.jpg" alt="" loading="lazy"></span><span class="vb"><b><i class="kd">댓글 3위</i>맥도날드에서 랩으로 주문하는 존박 (AI 커버)</b><small>유튜브 · 오색플로우 · 2026-10-27</small><em>조회 8.4만 · 좋아요 947 · 댓글 88</em></span></a></div></article><article class="meme" id="G51"><header><h3>아일릿 체포하겠어</h3></header><p class="why">ILLIT 신곡 &#x27;체포하겠어&#x27;의 후렴을 따라 하는 챌린지·무대 영상이 릴스에서 오르는 중. 멜론 TOP100 6위 소개 글도 나왔다(게시물 기준).</p><dl class="sumbox"><div><dt title="영상" aria-label="영상">🎬</dt><dd>ILLIT 신곡 &#x27;체포하겠어&#x27; 후렴 챌린지·무대 영상이 인스타 릴스에서 퍼지는 밈.</dd></div><div><dt title="유행 이유" aria-label="유행 이유">🔥</dt><dd>앵콜 무대 릴스 좋아요 2만·댓글 90, 프리뷰 음원은 릴스 인기 상승 오디오 5위라고 한터 매거진이 소개(10/26).</dd></div><div><dt title="재미 포인트" aria-label="재미 포인트">😂</dt><dd>공공기관 패러디는 인스타·유튜브 검색에서 못 찾음(미확인). 조회수·썸네일은 인스타 페이지에 안 나와 비어 있음.</dd></div></dl><div class="vg og none"><h4>원본</h4><p class="nf">원본 영상을 찾지 못함 · <a href="https://www.instagram.com/reel/De9BeF4TaVd/" target="_blank" rel="noopener">원본 후보(미확정): 아일릿 공식 계정 게시물은 열람하지 못함. 모음 글(shortlegs.work 10/25)이 원본 계정으로 @illit_official을 적음.</a></p></div><div class="vg gv2 none"><h4>기업 패러디</h4><p class="nf">찾지 못함 (10/31 기준)</p></div><div class="vg rx2"><h4>일반 패러디 <small>일반 계정 · 10/31 기준</small></h4><p class="rk">조회수 TOP2</p><a class="vi" href="https://www.instagram.com/reel/De9BeF4TaVd/" target="_blank" rel="noopener"><span class="vt"><span class="ph">인스타</span></span><span class="vb"><b><i class="kd">조회수 1위</i>체포하겠어 앵콜 무대 릴스(aht.playlist)</b><small>인스타 · @aht.playlist · 2026-10-26</small><em>좋아요 2.0만 · 댓글 90</em></span></a><a class="vi" href="https://www.instagram.com/p/De8c9p6SB5i/" target="_blank" rel="noopener"><span class="vt"><span class="ph">인스타</span></span><span class="vb"><b><i class="kd">조회수 2위</i>체포하겠어 뱅진 챌린지(_somstarlatte_)</b><small>인스타 · @_somstarlatte_ · 2026-10-26</small><em>좋아요 29</em></span></a><p class="rk">댓글 TOP1</p><a class="vi" href="https://www.instagram.com/reel/De9BeF4TaVd/" target="_blank" rel="noopener"><span class="vt"><span class="ph">인스타</span></span><span class="vb"><b><i class="kd">댓글 1위</i>체포하겠어 앵콜 무대 릴스(aht.playlist)</b><small>인스타 · @aht.playlist · 2026-10-26</small><em>좋아요 2.0만 · 댓글 90</em></span></a></div></article></section>
+
+<section class="cat-sec" id="fails"><h2>망한 사례<small>새 사례 없음</small></h2>
+<p class="lead">새 사례 없음. 이번 호 수집 회차(10/24~10/31)에 새로 찾은 사례가 없습니다. 지난 호에 실은 사례는 지난 호 공유본에서 봅니다.</p></section>
+
+</main>
+<script id="clipmap" type="application/json">{}</script>
+<style id="vplay-css">
+#vplay{position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+#vplay .vbox{width:min(920px,100%);max-height:100%;overflow:auto;background:#111;border-radius:14px;color:#fff;font:14px/1.4 system-ui,sans-serif}
+#vplay .vtop{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;background:#18181c}
+#vplay .vtop b{flex:1;min-width:0;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#vplay .vtop button{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:#2a2a30;color:#fff;font-size:16px}
+#vplay .vfr{position:relative;width:100%;height:0;padding-bottom:56.25%;background:#000}
+#vplay .vfr.v{width:min(100%,340px);padding-bottom:min(177.78%,600px);margin:0 auto}
+#vplay iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
+#vplay .vlow{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;background:#18181c;font-size:13px}
+#vplay .vlow a{color:#cfd2ff;text-decoration:none}
+#vplay .vlow span{color:#9a9aa6}
+</style>
+<script id="vplay-js">
+(function(){
+try{
+function parse(h){var m;
+ if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
+ if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0',v:true};
+ if((m=/instagram\.com\/(?:reel|p)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
+ return null}
+function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
+function openP(href,title,info){
+ closeP();var host=document.querySelector('dialog[open]:last-of-type')||document.body;
+ var all=document.querySelectorAll('dialog[open]');if(all.length)host=all[all.length-1];
+ var o=document.createElement('div');o.id='vplay';
+ var box=document.createElement('div');box.className='vbox';
+ var top=document.createElement('div');top.className='vtop';
+ var b=document.createElement('b');b.textContent=title||'영상';
+ var x=document.createElement('button');x.type='button';x.textContent='✕';x.setAttribute('aria-label','닫기');
+ top.appendChild(b);top.appendChild(x);
+ var fr=document.createElement('div');fr.className='vfr'+(info.v?' v':'');
+ var f=document.createElement('iframe');f.src=info.u;f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');f.setAttribute('allowfullscreen','');f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');f.setAttribute('title','영상');
+ fr.appendChild(f);
+ var low=document.createElement('div');low.className='vlow';
+ var a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.textContent='원본에서 열기 ↗';
+ var sp=document.createElement('span');sp.textContent='안 열리면 오른쪽 링크';
+ low.appendChild(sp);low.appendChild(a);
+ box.appendChild(top);box.appendChild(fr);box.appendChild(low);o.appendChild(box);
+ x.addEventListener('click',function(ev){ev.stopPropagation();closeP()});
+ o.addEventListener('click',function(ev){if(ev.target===o)closeP()});
+ host.appendChild(o)}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeP()});
+document.addEventListener('click',function(e){
+ try{
+  var el=e.target;if(el&&el.nodeType===3)el=el.parentNode;
+  var a=el&&el.closest?el.closest('a[href^="http"]'):null;if(!a)return;
+  if(a.closest('#vplay')||a.closest('.infobody'))return;
+  var info=parse(a.href);if(!info)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  var t=a.querySelector('.vb b');var title=(t?t.textContent:a.textContent||'').replace(/\s+/g,' ').trim().slice(0,90);
+  openP(a.href,title,info);
+ }catch(err){}
+},true);
+}catch(err){}
+})();
+</script>
+<style id="swipe-css">
+/* 세로 스와이프 보기: 스크립트가 켜져 있을 때만 적용. 꺼져 있으면 원래 페이지가 그대로 보인다. */
+html.swp{overflow:hidden}
+body.swp{--bg:#0b0b0d;--paper:#16161a;--fg:#f2f2f4;--mut:#a3a3ad;--ln:#2a2a31;--ac:#ffffff;--ac-soft:#26262c;--hi:#ffffff;--hi-fg:#000;--ok:#6fd3a0;--ok-bg:#183326;--list:#f2bf5e;--list-bg:#3a2c10;--read:#b5c1dc;--read-bg:#252c3c;--no:#ff8a98;--no-bg:#3d1a20;background:#0b0b0d;color:var(--fg);color-scheme:dark}
+body.swp>main,body.swp>nav.top{display:none}
+#ms{position:fixed;inset:0;z-index:1;overflow-y:auto;scroll-snap-type:y mandatory;background:#0b0b0d;overscroll-behavior:contain}
+#ms .sl{position:relative;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:calc(64px + env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+#ms .sl .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(28px) brightness(.45);transform:scale(1.25)}
+#ms .sl .cd{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;width:min(100%,560px)}
+#ms .sl .fg{position:relative;width:100%;display:flex;align-items:center;justify-content:center}
+#ms .sl .fg img{max-width:100%;max-height:min(46dvh,420px);border-radius:16px;box-shadow:0 10px 40px #0008}
+#ms .sl .th.ph{display:flex;align-items:center;justify-content:center;width:min(100%,320px);height:150px;font-size:54px;line-height:1;background:#26262c;border-radius:16px}
+#ms .sl .th{position:relative;display:inline-block;max-width:100%;line-height:0}
+#ms .sl small{position:absolute;top:8px;left:8px;z-index:2;display:block;max-width:calc(100% - 16px);padding:3px 10px;border-radius:99px;background:#0b0b0d;color:#fff;font-weight:700;font-size:11.5px;line-height:1.3;text-align:left;pointer-events:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ms .sl.fl small{background:#d7192b}
+#ms .sl .th.ph .pt{display:block;padding:18px;font-size:17px;font-weight:700;line-height:1.4;color:#fff}
+#ms .sl .th.ph{border:2px solid #d7192b}
+#ms .sl .y{display:block;max-width:60ch;color:#ffd7da;background:#d7192b33;border-left:3px solid #d7192b;border-radius:6px;padding:6px 10px;font-size:13px;line-height:1.5;text-align:left;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+#ms .sl b{display:block;font-size:clamp(21px,5.4vw,28px);line-height:1.25;letter-spacing:-.03em;text-wrap:balance}
+#ms .sl .w{display:block;color:#d0d0d8;font-size:13.5px;max-width:60ch}
+#ms .sl .go{flex:none;position:relative;z-index:1;margin:6px 0 8px;border:0;border-radius:99px;background:#fff;color:#000;font:700 14px var(--f-body);padding:11px 24px;cursor:pointer}
+#ms .hint{position:absolute;left:0;right:0;text-align:center;bottom:calc(8px + env(safe-area-inset-bottom,0px));color:#fff9;font-size:12px}
+#ms .hint::before{content:"↑ ";}
+#sbar{position:fixed;z-index:6;left:0;right:0;top:0;padding:calc(10px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px));display:flex;gap:8px;align-items:center;justify-content:center;background:linear-gradient(#000b,#0000)}
+#sbar button{flex:none;border:0;border-radius:99px;font:600 13px var(--f-body);padding:8px 13px;background:#fff2;color:#fff;backdrop-filter:blur(8px);cursor:pointer;white-space:nowrap}
+#sbar button[aria-pressed=true]{background:#fff;color:#000}
+#sbar button[data-c="망한 사례"]{background:#d7192b;border-color:#d7192b;color:#fff}
+#sbar button[data-c="망한 사례"][aria-pressed=true]{background:#fff;color:#d7192b;border-color:#d7192b}
+#sbar .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:0 1 auto}
+#sbar .cnt{flex:none;color:#fff;font:600 12px var(--f-mono);background:#0007;border-radius:99px;padding:6px 10px}
+/* 웹(넓은 화면): 한 페이지에 여러 장을 격자로, 막대와 카드가 같은 폭으로 붙어 있다 */
+@media (min-width:760px){
+ #ms{scroll-snap-type:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;align-content:start;grid-auto-rows:max-content;padding:76px max(20px,calc((100% - 1240px)/2)) 40px}
+ #ms .sl{height:auto;min-height:0;overflow:visible;scroll-snap-align:none;border-radius:18px;background:#16161a;padding:14px 14px 18px;justify-content:flex-start}
+ #ms .sl .bg,#ms .hint{display:none}
+ #ms .sl .cd{width:100%;gap:9px}
+ #ms .sl .fg{height:auto;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#0b0b0d}
+ #ms .sl .th{width:100%;height:100%;display:block}
+ #ms .sl .th.ph{display:flex;width:100%;height:100%;border-radius:0}
+ #ms .sl .fg img{width:100%;height:100%;object-fit:contain;border-radius:0;box-shadow:none}
+ #ms .sl b{font-size:16.5px}
+ #ms .sl .w{font-size:12.5px}
+ #sbar{padding-left:max(20px,calc((100% - 1240px)/2));padding-right:max(20px,calc((100% - 1240px)/2));background:linear-gradient(#0b0b0d,#0b0b0df0 70%,#0b0b0d00)}
+}
+dialog.shd{position:fixed;inset:auto 0 0 0;margin:0 auto;width:min(760px,100%);max-height:92dvh;height:92dvh;border:0;padding:0;border-radius:26px 26px 0 0;overflow:auto;background:#0b0b0d;color:#f2f2f4;color-scheme:dark}
+dialog.shd::backdrop{background:#000a}
+dialog.shd .det{position:relative;padding:22px max(16px,env(safe-area-inset-left,0px)) calc(60px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:40px}
+dialog.shd .grab{width:42px;height:5px;border-radius:9px;background:#2a2a31;margin:-8px auto -22px}
+dialog.shd .xx{position:sticky;top:8px;align-self:flex-end;z-index:3;border:0;border-radius:99px;width:38px;height:38px;font-size:18px;cursor:pointer;background:#26262c;color:#fff;margin-bottom:-30px}
+dialog.shd .meme{margin:0}
+/* 상세 안: 영상 줄은 썸네일|제목, 조회·좋아요·댓글은 아래 줄 */
+dialog.shd .sumbox div{grid-template-columns:2em minmax(0,1fr);align-items:start}
+dialog.shd .sumbox dt{font-size:18px;line-height:1.3}
+dialog.shd a.vi{cursor:pointer}
+@media (max-width:700px){
+ dialog.shd .vi,dialog.shd .vi.big{grid-template-columns:104px minmax(0,1fr);column-gap:10px;row-gap:4px;align-items:start}
+ dialog.shd .vi .vb{display:contents}
+ dialog.shd .vi .vt{grid-row:1 / span 2}
+ dialog.shd .vi .vb b,dialog.shd .vi .vb small{grid-column:2}
+ dialog.shd .vi .vb em{grid-column:1 / -1;margin-top:2px;line-height:1.5}
+ dialog.shd .rx .tw{overflow:visible}
+ dialog.shd .rx table,dialog.shd .rx tbody{display:block}
+ dialog.shd .rx thead{display:none}
+ dialog.shd .rx tr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px 6px;padding:8px 0;border-bottom:1px solid var(--ln)}
+ dialog.shd .rx tr:last-child{border-bottom:0}
+ dialog.shd .rx td{display:block;border:0;padding:0}
+ dialog.shd .rx td:first-child{grid-column:1 / -1;min-width:0;margin-bottom:4px}
+ dialog.shd .rx th:nth-child(2),dialog.shd .rx td:nth-child(2){display:block}
+ dialog.shd .rx td.r{text-align:left}
+ dialog.shd .rx td.r::before{content:attr(data-l);display:block;font:400 11px var(--f-body);color:var(--mut)}
+}
+/* 내부 재생창 */
+dialog.shd .inl{grid-column:1 / -1;margin:6px 0 10px;border-radius:12px;overflow:hidden;background:#000}
+dialog.shd .inl .fr{position:relative;width:100%;height:0;padding-bottom:56.25%;background:#000}
+dialog.shd .inl .fr.v{width:min(100%,360px);padding-bottom:min(177.78%,640px);margin:0 auto}
+dialog.shd .inl .wm{padding:8px 12px;background:#2a1a1c;color:#ffd7da;font-size:12.5px;text-align:center}
+dialog.shd .inl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+dialog.shd .inl .ib{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;background:#16161a;font-size:13px}
+dialog.shd .inl .ib a,dialog.shd .inl .ib button{color:#c9c9d1;background:none;border:0;font:inherit;cursor:pointer;text-decoration:none;padding:4px 2px}
+dialog.pl{position:fixed;inset:0;margin:auto;width:min(920px,96vw);max-height:94dvh;border:0;padding:0;border-radius:18px;background:#000;color:#fff;overflow:hidden;color-scheme:dark}
+dialog.pl::backdrop{background:#000d}
+dialog.pl .ph{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;background:#16161a}
+dialog.pl .ph b{flex:1;min-width:0;font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+dialog.pl .ph button{flex:none;border:0;border-radius:99px;width:34px;height:34px;font-size:16px;cursor:pointer;background:#26262c;color:#fff}
+dialog.pl video{display:block;width:100%;max-height:calc(94dvh - 56px);background:#000}
+dialog.pl .fr{position:relative;width:100%;height:min(78dvh,700px);background:#000}
+dialog.pl .fr iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+dialog.pl .ol{display:block;text-align:center;padding:10px;font-size:13px;color:#c9c9d1;background:#16161a;text-decoration:none}
+dialog.pl .nv{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px 18px 26px;text-align:center}
+dialog.pl .nv img{max-width:min(100%,360px);max-height:40dvh;border-radius:12px}
+dialog.pl .nv p{margin:0;color:#c9c9d1;font-size:13.5px;line-height:1.55;max-width:44ch}
+dialog.pl .nv a{display:inline-block;border-radius:99px;background:#fff;color:#000;font-weight:700;font-size:14px;padding:11px 22px;text-decoration:none}
+#store{display:none}
+@media (prefers-reduced-motion:reduce){#ms{scroll-behavior:auto}}
+</style>
+<script id="swipe-js">
+(function(){
+try{
+const $=(q,r=document)=>r.querySelector(q),$$=(q,r=document)=>[...r.querySelectorAll(q)];
+const main=$('main');if(!main||!$('#map .tile'))return;
+const tiles=$$('#map .tile');
+const items=tiles.map(a=>{
+  const id=a.getAttribute('href').slice(1),ar=document.getElementById(id);if(!ar)return null;
+  const img=$('img',a);
+  let cat=($('small',a)||{}).textContent||'';cat=cat.split(' · ')[0].replace(/^\d+\s*/,'').trim();
+  let w=($('.when',a)||{}).textContent||'';w=w.replace(/^유행 시기 · /,'');
+  if(!w){const dts=$$('dl.facts dt',ar).filter(d=>/유행 시기|시작·확산/.test(d.textContent));if(dts[0])w=dts[0].nextElementSibling.textContent}
+  return {id,img:img?img.src:'',t:($('b',a)||ar.querySelector('h3')).textContent,c:cat,w};
+}).filter(Boolean);
+if(!items.length)return;
+const store=document.createElement('div');store.id='store';
+const info=document.createElement('div');info.className='infobody';
+$$(':scope>*',main).forEach(ch=>{
+  if(ch.id==='map'){return}
+  if(ch.querySelector&&(ch.querySelector('article.meme')||ch.querySelector('article.fail'))){store.append(ch)}else{info.append(ch)}
+});
+document.body.append(store);
+$$('article.fail',store).forEach((ar,n)=>{ar.id='F'+(n+1);const h=$('h3',ar),kd=$('.kd',h);
+  items.push({id:ar.id,img:(($('.fth img',ar)||{}).getAttribute&&$('.fth img',ar)?$('.fth img',ar).getAttribute('src'):''),t:[...h.childNodes].filter(x=>x!==kd).map(x=>x.textContent).join('').trim(),c:'망한 사례',w:(($('.fw',ar)||{}).textContent||'').trim(),y:(($$('dl dd',ar)[1]||{}).textContent||'').trim(),fail:true})});
+document.documentElement.classList.add('swp');document.body.classList.add('swp');
+const cats=[...new Set(items.map(i=>i.c).filter(Boolean))];
+// slides
+const ms=document.createElement('div');ms.id='ms';
+items.forEach((i,n)=>{const s=document.createElement('section');s.className='sl'+(i.fail?' fl':'');s.dataset.n=n;s.dataset.c=i.c;
+  s.innerHTML=(i.img?`<div class="bg" style="background-image:url('${i.img}')"></div>`:'<div class="bg"></div>')+`<div class="cd"><div class="fg"><div class="th${i.img?'':' ph'}">${i.img?`<img src="${i.img}" alt="">`:'<span class="pt"></span>'}<small></small></div></div><button class="go" type="button">자세히 보기</button><b></b><span class="w"></span>${i.fail&&i.y?'<span class="y"></span>':''}</div>`+(n<items.length-1?'<span class="hint">다음</span>':'');
+  $('small',s).textContent=i.c;$('b',s).textContent=i.t;$('.w',s).textContent=i.w||'';if($('.y',s))$('.y',s).textContent='왜 욕먹었나 · '+i.y;if($('.pt',s))$('.pt',s).textContent=i.t;
+  $('.go',s).onclick=()=>openArt(i.id);ms.append(s)});
+// bar
+const bar=document.createElement('div');bar.id='sbar';
+const ib=document.createElement('button');ib.type='button';ib.textContent='ⓘ 정보';bar.append(ib);
+const chips=document.createElement('div');chips.className='chips';
+cats.forEach(c=>{const b=document.createElement('button');b.type='button';b.textContent=c;b.dataset.c=c;b.onclick=()=>{const t=$$('.sl',ms).find(x=>x.dataset.c===c);if(t){window.__chipLock=c;cnt.textContent=(+t.dataset.n+1)+' / '+items.length;$$('button',chips).forEach(k=>k.setAttribute('aria-pressed',k.dataset.c===c));t.scrollIntoView({behavior:'smooth'})}};chips.append(b)});
+bar.append(chips);const cnt=document.createElement('span');cnt.className='cnt';bar.append(cnt);
+// sheets
+function mkSheet(){const d=document.createElement('dialog');d.className='shd';d.innerHTML='<div class="det"><div class="grab"></div><button class="xx" type="button" aria-label="닫기">✕</button><div class="body"></div></div>';$('.xx',d).onclick=()=>d.close();d.addEventListener('click',e=>{if(e.target===d)d.close()});return d}
+const sh=mkSheet(),shi=mkSheet();
+$('.body',shi).append(info);
+document.body.append(ms,bar,sh,shi);
+// ---- 내부 재생창: 영상 링크를 누르면 새 창 대신 이 페이지 안에서 연다 ----
+let CLIPS={};try{CLIPS=JSON.parse(($('#clipmap')||{}).textContent||'{}')}catch(_){}
+const tidOf=u=>{const m=/youtu\.be\/([\w-]+)|youtube\.com\/(?:watch\?v=|shorts\/)([\w-]+)|\/reel\/([\w-]+)|tiktok\.com\/.*\/video\/(\d+)/.exec(u||'');return m?(m[4]?'tt'+m[4]:(m[1]||m[2]||m[3])):null};
+const pl=document.createElement('dialog');pl.className='pl';pl.innerHTML='<div class="ph"><b></b><button type="button" aria-label="닫기">✕</button></div><div class="pb"></div>';
+$('button',pl).onclick=()=>pl.close();pl.addEventListener('click',e=>{if(e.target===pl)pl.close()});
+pl.addEventListener('close',()=>{$('.pb',pl).innerHTML=''});
+document.body.append(pl);
+function noVideo(href,title,img,meta){const pb=$('.pb',pl);pb.innerHTML='<div class="nv"></div>';const nv=$('.nv',pb);
+  if(img){const im=document.createElement('img');im.src=img;im.alt='';nv.append(im)}
+  (meta||[]).filter(Boolean).forEach((t,k)=>{const m=document.createElement('p');m.textContent=t;if(k)m.style.fontFamily='var(--f-mono)';nv.append(m)});const p=document.createElement('p');p.style.fontSize='12px';p.style.color='#8f8f99';p.textContent='이 보기 방식에서는 외부 영상 재생이 막혀 원본 사이트에서 열립니다.';nv.append(p);
+  const a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.textContent='원본 열기 ↗';nv.append(a)}
+function embedOf(href){let m;
+  if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(href)))return 'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0';
+  if((m=/instagram\.com\/reel\/([\w-]+)/.exec(href)))return 'https://www.instagram.com/reel/'+m[1]+'/embed';
+  if((m=/youtu\.be\/([\w-]+)|youtube\.com\/(?:watch\?v=|shorts\/)([\w-]+)/.exec(href)))return 'https://www.youtube-nocookie.com/embed/'+(m[1]||m[2])+'?autoplay=1&rel=0&playsinline=1';
+  return null}
+let plNow=null;
+document.addEventListener('securitypolicyviolation',e=>{if(plNow&&pl.open&&/youtube|tiktok|instagram/.test(e.blockedURI||'')){const n=plNow;plNow=null;noVideo(n.href,n.title,n.img,n.meta)}});
+function playVideo(href,title,img,meta){const id=tidOf(href),f=id&&CLIPS[id],em=embedOf(href);$('b',pl).textContent=title||'영상';
+  const pb=$('.pb',pl);pb.innerHTML='';plNow=null;
+  if(f){const v=document.createElement('video');v.controls=true;v.autoplay=true;v.playsInline=true;v.preload='metadata';if(img)v.poster=img;v.src=f;v.onerror=()=>noVideo(href,title,img,meta);pb.append(v)}
+  else if(em){plNow={href,title,img,meta};const w=document.createElement('div');w.className='fr';const fr=document.createElement('iframe');fr.src=em;fr.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';fr.allowFullscreen=true;fr.referrerPolicy='strict-origin-when-cross-origin';fr.title=title||'영상';w.append(fr);pb.append(w);
+    const a=document.createElement('a');a.className='ol';a.href=href;a.target='_blank';a.rel='noopener';a.textContent='원본 사이트에서 열기 ↗';pb.append(a)}
+  else noVideo(href,title,img,meta);
+  if(!pl.open)pl.showModal()}
+function inlinePlay(a){const href=a.href,em=embedOf(href);if(!em)return false;
+  $$('.inl',sh).forEach(x=>x.remove());
+  const w=document.createElement('div');w.className='inl';const vert=/tiktok|instagram/.test(href);
+  const fr=document.createElement('div');fr.className='fr'+(vert?' v':'');
+  const f=document.createElement('iframe');f.src=em;f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';f.title='영상';fr.append(f);
+  const ib=document.createElement('div');ib.className='ib';
+  const o=document.createElement('a');o.href=href;o.target='_blank';o.rel='noopener';o.textContent='원본에서 열기 ↗';
+  const c=document.createElement('button');c.type='button';c.textContent='닫기 ✕';c.onclick=()=>w.remove();
+  ib.append(o,c);w.append(fr,ib);a.after(w);
+  let loaded=false;f.addEventListener('load',()=>{loaded=true});
+  setTimeout(()=>{if(!loaded&&w.isConnected&&!$('.wm',w)){const m=document.createElement('div');m.className='wm';m.textContent='영상이 열리지 않으면 아래 "원본에서 열기"를 눌러 주세요.';w.insertBefore(m,ib)}},6000);
+  try{w.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(_){}
+  return true}
+function openArt(id){const src=$('#store #'+id);if(!src)return;const b=$('.body',sh);b.innerHTML='';b.append(src.cloneNode(true));$$('.rx table',b).forEach(t=>{const hs=$$('thead th',t).map(h=>h.textContent);$$('tbody tr',t).forEach(r=>$$('td',r).forEach((td,k)=>{if(k)td.dataset.l=hs[k]||''}))});if(!sh.open)sh.showModal();sh.scrollTop=0}
+ib.onclick=()=>{shi.showModal();shi.scrollTop=0};
+function goto(id){const n=items.findIndex(i=>i.id===id);if(n>=0){const t=$$('.sl',ms)[n];if(t)t.scrollIntoView();}}
+document.addEventListener('click',e=>{const v=e.target.closest&&e.target.closest('dialog.shd a[href^="http"]');if(v&&!v.closest('.infobody')&&tidOf(v.href)){e.preventDefault();if(inlinePlay(v))return;const im=$('img',v),t=($('.vb b',v)||v).textContent.trim();playVideo(v.href,t,im?im.src:'',[($('.vb small',v)||{}).textContent,($('.vb em',v)||{}).textContent]);return}
+  const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);if(!id)return;
+  if(items.some(i=>i.id===id)){e.preventDefault();shi.close();goto(id);openArt(id);return}
+  const t=document.getElementById(id);if(t&&t.closest('#store')){e.preventDefault()}});
+// counter + active chip
+const slides=$$('.sl',ms);let curN=-1,tk=0;
+function syncBar(){tk=0;if(window.__chipLock)return;const r=ms.getBoundingClientRect();let best=slides[0];
+ for(const x of slides){const q=x.getBoundingClientRect();const v=Math.min(q.bottom,r.bottom)-Math.max(q.top,r.top);if(v>=q.height*.5){best=x;break}}
+ const n=+best.dataset.n;if(n===curN)return;curN=n;cnt.textContent=(n+1)+' / '+items.length;
+ $$('button',chips).forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===best.dataset.c))}
+ms.addEventListener('scroll',()=>{if(!tk)tk=requestAnimationFrame(syncBar)},{passive:true});
+['wheel','touchstart','keydown','pointerdown'].forEach(ev=>ms.addEventListener(ev,()=>{if(window.__chipLock){window.__chipLock=null;curN=-1}},{passive:true}));
+addEventListener('keydown',()=>{window.__chipLock=null;curN=-1});
+addEventListener('resize',()=>{curN=-1;syncBar()});syncBar();
+}catch(err){console.error(err);document.documentElement.classList.remove('swp');document.body.classList.remove('swp')}
+})();
+</script>
+
+<style id="ad-css">
+/* 광고 자리(임시 표시 >_ㅇ): github.io 사이트와 로컬 시험에서만 켜진다. Artifact에서는 꺼져 있다. */
+.adbox{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;border:1px dashed #ffffff40;border-radius:12px;background:#1c1c22;color:#8f8f99;font:700 15px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em}
+.adbox.ad-top{height:56px;margin-bottom:2px}
+.adbox.ad-sheet{height:90px;margin:0 0 -12px}
+.adbox.ad-vh{height:100px;width:min(920px,100%);margin-top:12px}
+.adbox.ad-vv{height:56px;border-radius:0;border-left:0;border-right:0}
+#adbar{position:fixed;z-index:8;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:6px max(12px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:#0b0b0df2}
+#adbar .adbox{max-width:728px;height:50px}
+html.adon #issuebar{bottom:calc(72px + env(safe-area-inset-bottom,0px)) !important}
+@media (max-width:759px){
+ html.adon #ms .sl{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
+ html.adon #ms .hint{bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+}
+@media (min-width:760px){html.adon #ms{padding-bottom:140px}}
+.adside{display:none}
+@media (min-width:900px){
+ html.adon .adbox.ad-top{display:none}
+ html.adon .adside{display:flex;position:fixed;z-index:7;top:76px;bottom:72px;width:120px}
+ html.adon .adside.l{left:16px}html.adon .adside.r{right:16px}
+ html.adon .adside .adbox{height:100%;max-width:120px}
+ html.adon #ms{padding-left:max(152px,calc((100% - 1240px)/2));padding-right:max(152px,calc((100% - 1240px)/2))}
+}
+@media (min-width:1280px){
+ html.adon .adside{width:160px}html.adon .adside .adbox{max-width:160px}
+ html.adon #ms{padding-left:max(192px,calc((100% - 1240px)/2));padding-right:max(192px,calc((100% - 1240px)/2))}
+}
+dialog.shd .xx{margin-bottom:-26px}
+.adsticky{position:sticky;bottom:0;z-index:4;padding:8px max(12px,env(safe-area-inset-left,0px)) calc(8px + env(safe-area-inset-bottom,0px));background:#0b0b0df5}
+.adsticky .adbox{height:50px}
+#vplay.ad{flex-direction:column;justify-content:flex-start;padding-top:clamp(28px,11dvh,110px)}
+#vplay.ad .vfr.v{height:0;width:min(100%,calc(min(600px,max(240px,100dvh - 270px))*.5625));padding-bottom:min(600px,max(240px,calc(100dvh - 270px)))}
+</style>
+<script id="ad-js">
+(function(){
+try{
+if(!/(^|\.)github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname))return;
+if(!document.documentElement.classList.contains('swp'))return;
+var de=document.documentElement;de.classList.add('adon');
+function box(cls){var d=document.createElement('div');d.className='adbox '+cls;d.setAttribute('role','complementary');d.setAttribute('aria-label','광고');var t=document.createElement('span');t.textContent='>_ㅇ';d.appendChild(t);return d}
+// 1) 카드마다 썸네일 위 광고
+Array.prototype.forEach.call(document.querySelectorAll('#ms .sl .cd'),function(cd){cd.insertBefore(box('ad-top'),cd.firstChild)});
+// 2) 화면 아래 고정
+var bar=document.createElement('div');bar.id='adbar';bar.appendChild(box(''));document.body.appendChild(bar);
+['l','r'].forEach(function(k){var sd=document.createElement('div');sd.className='adside '+k;sd.appendChild(box('ad-side'));document.body.appendChild(sd)});
+// 3) 자세히 보기 시트: 닫기(x) 줄 아래, 본문 위 (시트와 함께 스크롤)
+Array.prototype.forEach.call(document.querySelectorAll('dialog.shd'),function(d){
+ if(d.querySelector('.infobody'))return;var det=d.querySelector('.det'),body=det&&det.querySelector('.body');
+ if(det&&body)det.insertBefore(box('ad-sheet'),body);
+ var st=document.createElement('div');st.className='adsticky';st.appendChild(box('ad-sheetb'));d.appendChild(st)});
+// 4) 영상 재생창: 가로형은 아래 빈 공간, 세로형은 영상과 아래 줄 사이
+function deco(o){if(o.__ad)return;o.__ad=1;var bx=o.querySelector('.vbox');if(!bx)return;o.classList.add('ad');
+ var v=o.querySelector('.vfr.v'),low=o.querySelector('.vlow');
+ if(v&&low)bx.insertBefore(box('ad-vv'),low);else o.appendChild(box('ad-vh'))}
+new MutationObserver(function(ms){ms.forEach(function(m){Array.prototype.forEach.call(m.addedNodes,function(n){if(n.nodeType===1&&n.id==='vplay')deco(n)})})}).observe(document.body,{childList:true,subtree:true});
+}catch(e){console.error(e)}
+})();
+</script>
+<script>(function(){var b=document.getElementById("sbar");if(!b)return;var L=[["← 1주차", "https://claude.ai/artifact/AvtRyqKKPKKSbXpmMJnTMr"], ["← 2주차", "https://claude.ai/artifact/J56bKLPzJsz7mWzHeyJ51Z"]];for(var i=L.length-1;i>=0;i--){var a=document.createElement("a");a.href=L[i][1];a.target="_blank";a.rel="noopener";a.textContent=L[i][0];a.style.cssText="flex:none;border-radius:99px;font:600 13px var(--f-body);padding:8px 13px;background:#fff;color:#000;text-decoration:none;white-space:nowrap";b.insertBefore(a,b.firstChild)}})()</script></body></html>
