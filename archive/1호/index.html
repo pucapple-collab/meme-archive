@@ -338,7 +338,7 @@ document.addEventListener('click',function(e){
  try{
   var el=e.target;if(el&&el.nodeType===3)el=el.parentNode;
   var a=el&&el.closest?el.closest('a[href^="http"]'):null;if(!a)return;
-  if(a.closest('#vplay')||a.closest('.infobody'))return;
+  if(a.closest('#vplay'))return;
   var info=parse(a.href);if(!info)return;
   e.preventDefault();e.stopImmediatePropagation();
   var t=a.querySelector('.vb b');var title=(t?t.textContent:a.textContent||'').replace(/\s+/g,' ').trim().slice(0,90);
