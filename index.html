@@ -298,6 +298,8 @@ function parse(h){var m;
  if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
  if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0',v:true};
  if((m=/instagram\.com\/(?:reels?|p|tv)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
+ if((m=/(?:^|\/\/)(?:www\.|mobile\.)?(?:x|twitter)\.com\/\w+\/status\/(\d+)/.exec(h)))return {u:'https://platform.twitter.com/embed/Tweet.html?id='+m[1]+'&dnt=true&theme=dark',v:true};
+ if((m=/instagram\.com\/([\w.]+)\/?(?:[?#].*)?$/.exec(h))&&!/^(p|reel|reels|tv|explore|accounts|stories)$/.test(m[1]))return {u:'https://www.instagram.com/'+m[1]+'/embed',v:true};
  return null}
 function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
 function openP(href,title,info){
@@ -681,6 +683,8 @@ function parse(h){var m;
  if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
  if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0',v:true};
  if((m=/instagram\.com\/(?:reels?|p|tv)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
+ if((m=/(?:^|\/\/)(?:www\.|mobile\.)?(?:x|twitter)\.com\/\w+\/status\/(\d+)/.exec(h)))return {u:'https://platform.twitter.com/embed/Tweet.html?id='+m[1]+'&dnt=true&theme=dark',v:true};
+ if((m=/instagram\.com\/([\w.]+)\/?(?:[?#].*)?$/.exec(h))&&!/^(p|reel|reels|tv|explore|accounts|stories)$/.test(m[1]))return {u:'https://www.instagram.com/'+m[1]+'/embed',v:true};
  return null}
 function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
 function openP(href,title,info){
@@ -801,6 +805,8 @@ function parse(h){var m;
  if((m=/youtu\.be\/([\w-]+)/.exec(h))||(m=/youtube\.com\/(?:watch\?v=|shorts\/|embed\/)([\w-]+)/.exec(h)))return {u:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&rel=0&playsinline=1',v:false};
  if((m=/tiktok\.com\/.*\/video\/(\d+)/.exec(h)))return {u:'https://www.tiktok.com/player/v1/'+m[1]+'?autoplay=1&loop=0&music_info=1&description=0&rel=0',v:true};
  if((m=/instagram\.com\/(?:reels?|p|tv)\/([\w-]+)/.exec(h)))return {u:'https://www.instagram.com/reel/'+m[1]+'/embed',v:true};
+ if((m=/(?:^|\/\/)(?:www\.|mobile\.)?(?:x|twitter)\.com\/\w+\/status\/(\d+)/.exec(h)))return {u:'https://platform.twitter.com/embed/Tweet.html?id='+m[1]+'&dnt=true&theme=dark',v:true};
+ if((m=/instagram\.com\/([\w.]+)\/?(?:[?#].*)?$/.exec(h))&&!/^(p|reel|reels|tv|explore|accounts|stories)$/.test(m[1]))return {u:'https://www.instagram.com/'+m[1]+'/embed',v:true};
  return null}
 function closeP(){var o=document.getElementById('vplay');if(o&&o.parentNode)o.parentNode.removeChild(o)}
 function openP(href,title,info){
