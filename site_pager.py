@@ -20,3 +20,5 @@ for p, n, pref in pages:
     i = s.rindex('</body>'); s = s[:i] + js(n, pref) + s[i:]
     open(p, 'w', encoding='utf-8').write(s)
 print('ok', cur)
+# 방문 통계 코드 넣기(11/04 Jc 지시)
+import subprocess; subprocess.run([sys.executable, '-I', os.path.join(R, 'site_stats.py')], check=True)
